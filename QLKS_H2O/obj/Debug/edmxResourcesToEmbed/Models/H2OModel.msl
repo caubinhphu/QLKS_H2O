@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLKS_H2OModelStoreContainer" CdmEntityContainer="QLKS_H2OEntities">
+    <EntitySetMapping Name="CHITIET_THUEPHONG">
+      <EntityTypeMapping TypeName="QLKS_H2OModel.CHITIET_THUEPHONG">
+        <MappingFragment StoreEntitySet="CHITIET_THUEPHONG">
+          <ScalarProperty Name="SO_PHIEU" ColumnName="SO_PHIEU" />
+          <ScalarProperty Name="MAPHONG" ColumnName="MAPHONG" />
+          <ScalarProperty Name="SONGUOI" ColumnName="SONGUOI" />
+          <ScalarProperty Name="GIAPHONG" ColumnName="GIAPHONG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CT_THUE_DICHVU">
+      <EntityTypeMapping TypeName="QLKS_H2OModel.CT_THUE_DICHVU">
+        <MappingFragment StoreEntitySet="CT_THUE_DICHVU">
+          <ScalarProperty Name="SO_PHIEU" ColumnName="SO_PHIEU" />
+          <ScalarProperty Name="MA_DICHVU" ColumnName="MA_DICHVU" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="GIA_DICHVU" ColumnName="GIA_DICHVU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DICHVUs">
+      <EntityTypeMapping TypeName="QLKS_H2OModel.DICHVU">
+        <MappingFragment StoreEntitySet="DICHVU">
+          <ScalarProperty Name="MA_DICHVU" ColumnName="MA_DICHVU" />
+          <ScalarProperty Name="TEN_DICHVU" ColumnName="TEN_DICHVU" />
+          <ScalarProperty Name="GIA_DICHVU" ColumnName="GIA_DICHVU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KHACHes">
+      <EntityTypeMapping TypeName="QLKS_H2OModel.KHACH">
+        <MappingFragment StoreEntitySet="KHACH">
+          <ScalarProperty Name="MA_KHACH" ColumnName="MA_KHACH" />
+          <ScalarProperty Name="HOTEN_KHACH" ColumnName="HOTEN_KHACH" />
+          <ScalarProperty Name="CMND_PASSPORT" ColumnName="CMND/PASSPORT" />
+          <ScalarProperty Name="DIENTHOAI" ColumnName="DIENTHOAI" />
+          <ScalarProperty Name="QUOCTICH" ColumnName="QUOCTICH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOAIPHONGs">
+      <EntityTypeMapping TypeName="QLKS_H2OModel.LOAIPHONG">
+        <MappingFragment StoreEntitySet="LOAIPHONG">
+          <ScalarProperty Name="MA_LOAIPHONG" ColumnName="MA_LOAIPHONG" />
+          <ScalarProperty Name="TEN_LOAIPHONG" ColumnName="TEN_LOAIPHONG" />
+          <ScalarProperty Name="KICHTHUOC" ColumnName="KICHTHUOC" />
+          <ScalarProperty Name="MAMAU" ColumnName="MAMAU" />
+          <ScalarProperty Name="GIATIEUCHUAN" ColumnName="GIATIEUCHUAN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NHANVIENs">
+      <EntityTypeMapping TypeName="QLKS_H2OModel.NHANVIEN">
+        <MappingFragment StoreEntitySet="NHANVIEN">
+          <ScalarProperty Name="MA_NHANVIEN" ColumnName="MA_NHANVIEN" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="HOTEN_NHANVIEN" ColumnName="HOTEN_NHANVIEN" />
+          <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+          <ScalarProperty Name="DIENTHOAI" ColumnName="DIENTHOAI" />
+          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="BOPHAN" ColumnName="BOPHAN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHIEU_THUEPHONG">
+      <EntityTypeMapping TypeName="QLKS_H2OModel.PHIEU_THUEPHONG">
+        <MappingFragment StoreEntitySet="PHIEU_THUEPHONG">
+          <ScalarProperty Name="SO_PHIEU" ColumnName="SO_PHIEU" />
+          <ScalarProperty Name="MAKHACH" ColumnName="MAKHACH" />
+          <ScalarProperty Name="MA_NHANVIEN" ColumnName="MA_NHANVIEN" />
+          <ScalarProperty Name="NGAYLAP_PHIEU" ColumnName="NGAYLAP_PHIEU" />
+          <ScalarProperty Name="NGAYDEN" ColumnName="NGAYDEN" />
+          <ScalarProperty Name="NGAYDI" ColumnName="NGAYDI" />
+          <ScalarProperty Name="DATRAPHONG" ColumnName="DATRAPHONG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHONGs">
+      <EntityTypeMapping TypeName="QLKS_H2OModel.PHONG">
+        <MappingFragment StoreEntitySet="PHONG">
+          <ScalarProperty Name="MA_PHONG" ColumnName="MA_PHONG" />
+          <ScalarProperty Name="MA_LOAIPHONG" ColumnName="MA_LOAIPHONG" />
+          <ScalarProperty Name="GIAPHONG" ColumnName="GIAPHONG" />
+          <ScalarProperty Name="MA_TRANGTHAI" ColumnName="MA_TRANGTHAI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TONTHATs">
+      <EntityTypeMapping TypeName="QLKS_H2OModel.TONTHAT">
+        <MappingFragment StoreEntitySet="TONTHAT">
+          <ScalarProperty Name="SO_PHIEU" ColumnName="SO_PHIEU" />
+          <ScalarProperty Name="MA_VATTU" ColumnName="MA_VATTU" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="CHIPHI_BOITHUONG" ColumnName="CHIPHI_BOITHUONG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRANGTHAI_PHONG">
+      <EntityTypeMapping TypeName="QLKS_H2OModel.TRANGTHAI_PHONG">
+        <MappingFragment StoreEntitySet="TRANGTHAI_PHONG">
+          <ScalarProperty Name="MA_TRANGTHAI" ColumnName="MA_TRANGTHAI" />
+          <ScalarProperty Name="TEN_TRANGTHAI" ColumnName="TEN_TRANGTHAI" />
+          <ScalarProperty Name="MAMAU" ColumnName="MAMAU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VATTUs">
+      <EntityTypeMapping TypeName="QLKS_H2OModel.VATTU">
+        <MappingFragment StoreEntitySet="VATTU">
+          <ScalarProperty Name="MA_VATTU" ColumnName="MA_VATTU" />
+          <ScalarProperty Name="TEN_VATTU" ColumnName="TEN_VATTU" />
+          <ScalarProperty Name="CHIPHI_BOITHUONG" ColumnName="CHIPHI_BOITHUONG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VATTU_LOAIPHONG">
+      <EntityTypeMapping TypeName="QLKS_H2OModel.VATTU_LOAIPHONG">
+        <MappingFragment StoreEntitySet="VATTU_LOAIPHONG">
+          <ScalarProperty Name="MA_VATTU" ColumnName="MA_VATTU" />
+          <ScalarProperty Name="MA_LOAIPHONG" ColumnName="MA_LOAIPHONG" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

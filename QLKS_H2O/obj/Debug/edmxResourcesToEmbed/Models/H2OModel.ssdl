@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLKS_H2OModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CHITIET_THUEPHONG">
+    <Key>
+      <PropertyRef Name="SO_PHIEU" />
+      <PropertyRef Name="MAPHONG" />
+    </Key>
+    <Property Name="SO_PHIEU" Type="int" Nullable="false" />
+    <Property Name="MAPHONG" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SONGUOI" Type="tinyint" Nullable="false" />
+    <Property Name="GIAPHONG" Type="money" />
+  </EntityType>
+  <EntityType Name="CT_THUE_DICHVU">
+    <Key>
+      <PropertyRef Name="SO_PHIEU" />
+      <PropertyRef Name="MA_DICHVU" />
+    </Key>
+    <Property Name="SO_PHIEU" Type="int" Nullable="false" />
+    <Property Name="MA_DICHVU" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SOLUONG" Type="int" Nullable="false" />
+    <Property Name="GIA_DICHVU" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DICHVU">
+    <Key>
+      <PropertyRef Name="MA_DICHVU" />
+    </Key>
+    <Property Name="MA_DICHVU" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TEN_DICHVU" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="GIA_DICHVU" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KHACH">
+    <Key>
+      <PropertyRef Name="MA_KHACH" />
+    </Key>
+    <Property Name="MA_KHACH" Type="int" Nullable="false" />
+    <Property Name="HOTEN_KHACH" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CMND/PASSPORT" Type="varchar" MaxLength="10" />
+    <Property Name="DIENTHOAI" Type="varchar" MaxLength="15" />
+    <Property Name="QUOCTICH" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LOAIPHONG">
+    <Key>
+      <PropertyRef Name="MA_LOAIPHONG" />
+    </Key>
+    <Property Name="MA_LOAIPHONG" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TEN_LOAIPHONG" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KICHTHUOC" Type="int" Nullable="false" />
+    <Property Name="MAMAU" Type="varchar" MaxLength="10" />
+    <Property Name="GIATIEUCHUAN" Type="money" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MA_NHANVIEN" />
+    </Key>
+    <Property Name="MA_NHANVIEN" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="HOTEN_NHANVIEN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NGAYSINH" Type="date" />
+    <Property Name="DIENTHOAI" Type="varchar" MaxLength="15" />
+    <Property Name="DIACHI" Type="nvarchar" MaxLength="200" />
+    <Property Name="BOPHAN" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PHIEU_THUEPHONG">
+    <Key>
+      <PropertyRef Name="SO_PHIEU" />
+    </Key>
+    <Property Name="SO_PHIEU" Type="int" Nullable="false" />
+    <Property Name="MAKHACH" Type="int" Nullable="false" />
+    <Property Name="MA_NHANVIEN" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="NGAYLAP_PHIEU" Type="date" Nullable="false" />
+    <Property Name="NGAYDEN" Type="date" Nullable="false" />
+    <Property Name="NGAYDI" Type="date" Nullable="false" />
+    <Property Name="DATRAPHONG" Type="bit" />
+  </EntityType>
+  <EntityType Name="PHONG">
+    <Key>
+      <PropertyRef Name="MA_PHONG" />
+    </Key>
+    <Property Name="MA_PHONG" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MA_LOAIPHONG" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="GIAPHONG" Type="money" Nullable="false" />
+    <Property Name="MA_TRANGTHAI" Type="varchar" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TONTHAT">
+    <Key>
+      <PropertyRef Name="SO_PHIEU" />
+      <PropertyRef Name="MA_VATTU" />
+    </Key>
+    <Property Name="SO_PHIEU" Type="int" Nullable="false" />
+    <Property Name="MA_VATTU" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="SOLUONG" Type="tinyint" Nullable="false" />
+    <Property Name="CHIPHI_BOITHUONG" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TRANGTHAI_PHONG">
+    <Key>
+      <PropertyRef Name="MA_TRANGTHAI" />
+    </Key>
+    <Property Name="MA_TRANGTHAI" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="TEN_TRANGTHAI" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MAMAU" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VATTU">
+    <Key>
+      <PropertyRef Name="MA_VATTU" />
+    </Key>
+    <Property Name="MA_VATTU" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="TEN_VATTU" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CHIPHI_BOITHUONG" Type="money" />
+  </EntityType>
+  <EntityType Name="VATTU_LOAIPHONG">
+    <Key>
+      <PropertyRef Name="MA_VATTU" />
+      <PropertyRef Name="MA_LOAIPHONG" />
+    </Key>
+    <Property Name="MA_VATTU" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="MA_LOAIPHONG" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SOLUONG" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__CHITIET_T__MAPHO__35BCFE0A">
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="1" />
+    <End Role="CHITIET_THUEPHONG" Type="Self.CHITIET_THUEPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHONG">
+        <PropertyRef Name="MA_PHONG" />
+      </Principal>
+      <Dependent Role="CHITIET_THUEPHONG">
+        <PropertyRef Name="MAPHONG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CHITIET_T__SO_PH__34C8D9D1">
+    <End Role="PHIEU_THUEPHONG" Type="Self.PHIEU_THUEPHONG" Multiplicity="1" />
+    <End Role="CHITIET_THUEPHONG" Type="Self.CHITIET_THUEPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEU_THUEPHONG">
+        <PropertyRef Name="SO_PHIEU" />
+      </Principal>
+      <Dependent Role="CHITIET_THUEPHONG">
+        <PropertyRef Name="SO_PHIEU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CT_THUE_D__MA_DI__398D8EEE">
+    <End Role="DICHVU" Type="Self.DICHVU" Multiplicity="1" />
+    <End Role="CT_THUE_DICHVU" Type="Self.CT_THUE_DICHVU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DICHVU">
+        <PropertyRef Name="MA_DICHVU" />
+      </Principal>
+      <Dependent Role="CT_THUE_DICHVU">
+        <PropertyRef Name="MA_DICHVU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CT_THUE_D__SO_PH__38996AB5">
+    <End Role="PHIEU_THUEPHONG" Type="Self.PHIEU_THUEPHONG" Multiplicity="1" />
+    <End Role="CT_THUE_DICHVU" Type="Self.CT_THUE_DICHVU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEU_THUEPHONG">
+        <PropertyRef Name="SO_PHIEU" />
+      </Principal>
+      <Dependent Role="CT_THUE_DICHVU">
+        <PropertyRef Name="SO_PHIEU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEU_THU__MA_NH__30F848ED">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="PHIEU_THUEPHONG" Type="Self.PHIEU_THUEPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MA_NHANVIEN" />
+      </Principal>
+      <Dependent Role="PHIEU_THUEPHONG">
+        <PropertyRef Name="MA_NHANVIEN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEU_THU__MAKHA__300424B4">
+    <End Role="KHACH" Type="Self.KHACH" Multiplicity="1" />
+    <End Role="PHIEU_THUEPHONG" Type="Self.PHIEU_THUEPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACH">
+        <PropertyRef Name="MA_KHACH" />
+      </Principal>
+      <Dependent Role="PHIEU_THUEPHONG">
+        <PropertyRef Name="MAKHACH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHONG__MA_LOAIPH__1BFD2C07">
+    <End Role="LOAIPHONG" Type="Self.LOAIPHONG" Multiplicity="1" />
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIPHONG">
+        <PropertyRef Name="MA_LOAIPHONG" />
+      </Principal>
+      <Dependent Role="PHONG">
+        <PropertyRef Name="MA_LOAIPHONG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHONG__MA_TRANGT__1CF15040">
+    <End Role="TRANGTHAI_PHONG" Type="Self.TRANGTHAI_PHONG" Multiplicity="1" />
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRANGTHAI_PHONG">
+        <PropertyRef Name="MA_TRANGTHAI" />
+      </Principal>
+      <Dependent Role="PHONG">
+        <PropertyRef Name="MA_TRANGTHAI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TONTHAT__MA_VATT__3D5E1FD2">
+    <End Role="VATTU" Type="Self.VATTU" Multiplicity="1" />
+    <End Role="TONTHAT" Type="Self.TONTHAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VATTU">
+        <PropertyRef Name="MA_VATTU" />
+      </Principal>
+      <Dependent Role="TONTHAT">
+        <PropertyRef Name="MA_VATTU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TONTHAT__SO_PHIE__3C69FB99">
+    <End Role="PHIEU_THUEPHONG" Type="Self.PHIEU_THUEPHONG" Multiplicity="1" />
+    <End Role="TONTHAT" Type="Self.TONTHAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEU_THUEPHONG">
+        <PropertyRef Name="SO_PHIEU" />
+      </Principal>
+      <Dependent Role="TONTHAT">
+        <PropertyRef Name="SO_PHIEU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VATTU_LOA__MA_LO__173876EA">
+    <End Role="LOAIPHONG" Type="Self.LOAIPHONG" Multiplicity="1" />
+    <End Role="VATTU_LOAIPHONG" Type="Self.VATTU_LOAIPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIPHONG">
+        <PropertyRef Name="MA_LOAIPHONG" />
+      </Principal>
+      <Dependent Role="VATTU_LOAIPHONG">
+        <PropertyRef Name="MA_LOAIPHONG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VATTU_LOA__MA_VA__164452B1">
+    <End Role="VATTU" Type="Self.VATTU" Multiplicity="1" />
+    <End Role="VATTU_LOAIPHONG" Type="Self.VATTU_LOAIPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VATTU">
+        <PropertyRef Name="MA_VATTU" />
+      </Principal>
+      <Dependent Role="VATTU_LOAIPHONG">
+        <PropertyRef Name="MA_VATTU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLKS_H2OModelStoreContainer">
+    <EntitySet Name="CHITIET_THUEPHONG" EntityType="Self.CHITIET_THUEPHONG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CT_THUE_DICHVU" EntityType="Self.CT_THUE_DICHVU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DICHVU" EntityType="Self.DICHVU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KHACH" EntityType="Self.KHACH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOAIPHONG" EntityType="Self.LOAIPHONG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHIEU_THUEPHONG" EntityType="Self.PHIEU_THUEPHONG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TONTHAT" EntityType="Self.TONTHAT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TRANGTHAI_PHONG" EntityType="Self.TRANGTHAI_PHONG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VATTU" EntityType="Self.VATTU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VATTU_LOAIPHONG" EntityType="Self.VATTU_LOAIPHONG" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__CHITIET_T__MAPHO__35BCFE0A" Association="Self.FK__CHITIET_T__MAPHO__35BCFE0A">
+      <End Role="PHONG" EntitySet="PHONG" />
+      <End Role="CHITIET_THUEPHONG" EntitySet="CHITIET_THUEPHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CHITIET_T__SO_PH__34C8D9D1" Association="Self.FK__CHITIET_T__SO_PH__34C8D9D1">
+      <End Role="PHIEU_THUEPHONG" EntitySet="PHIEU_THUEPHONG" />
+      <End Role="CHITIET_THUEPHONG" EntitySet="CHITIET_THUEPHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CT_THUE_D__MA_DI__398D8EEE" Association="Self.FK__CT_THUE_D__MA_DI__398D8EEE">
+      <End Role="DICHVU" EntitySet="DICHVU" />
+      <End Role="CT_THUE_DICHVU" EntitySet="CT_THUE_DICHVU" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CT_THUE_D__SO_PH__38996AB5" Association="Self.FK__CT_THUE_D__SO_PH__38996AB5">
+      <End Role="PHIEU_THUEPHONG" EntitySet="PHIEU_THUEPHONG" />
+      <End Role="CT_THUE_DICHVU" EntitySet="CT_THUE_DICHVU" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEU_THU__MA_NH__30F848ED" Association="Self.FK__PHIEU_THU__MA_NH__30F848ED">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="PHIEU_THUEPHONG" EntitySet="PHIEU_THUEPHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEU_THU__MAKHA__300424B4" Association="Self.FK__PHIEU_THU__MAKHA__300424B4">
+      <End Role="KHACH" EntitySet="KHACH" />
+      <End Role="PHIEU_THUEPHONG" EntitySet="PHIEU_THUEPHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHONG__MA_LOAIPH__1BFD2C07" Association="Self.FK__PHONG__MA_LOAIPH__1BFD2C07">
+      <End Role="LOAIPHONG" EntitySet="LOAIPHONG" />
+      <End Role="PHONG" EntitySet="PHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHONG__MA_TRANGT__1CF15040" Association="Self.FK__PHONG__MA_TRANGT__1CF15040">
+      <End Role="TRANGTHAI_PHONG" EntitySet="TRANGTHAI_PHONG" />
+      <End Role="PHONG" EntitySet="PHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TONTHAT__MA_VATT__3D5E1FD2" Association="Self.FK__TONTHAT__MA_VATT__3D5E1FD2">
+      <End Role="VATTU" EntitySet="VATTU" />
+      <End Role="TONTHAT" EntitySet="TONTHAT" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TONTHAT__SO_PHIE__3C69FB99" Association="Self.FK__TONTHAT__SO_PHIE__3C69FB99">
+      <End Role="PHIEU_THUEPHONG" EntitySet="PHIEU_THUEPHONG" />
+      <End Role="TONTHAT" EntitySet="TONTHAT" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VATTU_LOA__MA_LO__173876EA" Association="Self.FK__VATTU_LOA__MA_LO__173876EA">
+      <End Role="LOAIPHONG" EntitySet="LOAIPHONG" />
+      <End Role="VATTU_LOAIPHONG" EntitySet="VATTU_LOAIPHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VATTU_LOA__MA_VA__164452B1" Association="Self.FK__VATTU_LOA__MA_VA__164452B1">
+      <End Role="VATTU" EntitySet="VATTU" />
+      <End Role="VATTU_LOAIPHONG" EntitySet="VATTU_LOAIPHONG" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
