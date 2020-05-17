@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/Content/fontawesome-free/css/all.min.css" />*@
+    <link rel="shortcut icon" type="image/png" href="~/favicon.ico" />
+    @RenderSection("style", false)
+    <script src="/scripts/jquery.js"></script>
+    <script src="/scripts/popper.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div style="position: relative">
+        <img class="img-fluid" src="/images/banner2.jpg" alt="Banner" />
+        <p class="badge badge-warning badge-pill" style="z-index: 10; position: absolute; top: 20px; left: 20px; font-size: 20px">Vitamin Sea Hotel</p>
+    </div>
+
+    <div id="main">
+        @RenderBody()
+    </div>
+
+    <footer class="footer text-center bg-info py-4">
+        <div class="container">
+            <div class="row">
+                <!-- Footer Location-->
+                <div class="col-lg-4 mb-3 mb-lg-0">
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <i class="fas fa-envelope mt-4 fa-2x"></i>
+                            <p>vitaminsea@gmail</p>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Footer Social Icons-->
+                <div class="col-lg-4 mb-3 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Contact with us</h4><a class="btn btn-outline-light btn-social mx-1" href="https://www.facebook.com/thanghai.trando"><i class="fab fa-fw fa-facebook-f"></i></a><a class="btn btn-outline-light btn-social mx-1" href="https://www.facebook.com/thanghai.trando"><i class="fab fa-fw fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://www.facebook.com/thanghai.trando"><i class="fab fa-fw fa-linkedin-in"></i></a><a class="btn btn-outline-light btn-social mx-1" href="https://www.facebook.com/thanghai.trando"><i class="fab fa-fw fa-dribbble"></i></a>
+                    <h4 class="text-uppercase mb-4"></h4>
+                </div>
+                <!-- Footer About Text-->
+                <div class="col-lg-4">
+                    <h5 class="mt-md-4">About us</h5>
+                    <p>Vitamin Sea Team</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <section class="copyright py-4 text-center text-black text-lg bg-secondary">
+        <div class="container"><small>Copyright &copy; Vitamin Sea website</small></div>
+    </section>
+
+    @RenderSection("script", false)
+</body>
+
+</html>
