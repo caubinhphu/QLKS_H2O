@@ -1,0 +1,52 @@
+﻿.phong {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin: 10px 10px;
+    cursor: pointer;
+}
+
+.phong-loaiphong {
+    width: 80%;
+    height: 84%;
+    position: absolute;
+    top: 16px;
+    left: 0;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.phong-trangthai {
+    width: 40%;
+    height: 40%;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+.phong-text {
+    font-size: 25px;
+    font-weight: bolder;
+    user-select: none;
+}
+
+.chuthich-loaiphong {
+    width: 30px;
+    height: 30;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.chuthich-trangthai {
+    width: 30px;
+    height: 30;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.phong:hover > div {
+    transform: scale(1.1, 1.1);
+    box-shadow: 5px 5px 6px gray;
+}

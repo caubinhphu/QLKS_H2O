@@ -1,0 +1,46 @@
+﻿@model QLKS_H2O.Models.DICHVU
+
+@{
+    ViewBag.Title = "DichVuDelete";
+    Layout = "~/Areas/Admin/Views/Shared/_QuanLyLayout.cshtml";
+}
+
+<h3>Bạn có chắc chắn xóa dịch vụ này không?</h3>
+<div>
+    <h4>Thông tin dịch vụ</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MA_DICHVU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MA_DICHVU)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TEN_DICHVU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEN_DICHVU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIA_DICHVU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIA_DICHVU)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            @Html.ActionLink("Quay lại", "DichVuIndex")
+        </div>
+    }
+</div>

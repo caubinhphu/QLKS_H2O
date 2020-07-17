@@ -1,0 +1,50 @@
+﻿@model QLKS_H2O.Models.CHITIET_THUEDICHVU
+
+@{
+    ViewBag.Title = "Thuê phòng";
+    Layout = "~/Areas/Admin/Views/Shared/_LeTanLayout.cshtml";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal w-75 mx-auto">
+        <h4>Thêm dịch vụ</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group d-flex align-items-center">
+            @Html.LabelFor(model => model.SO_PHIEU, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="SO_PHIEU" id="SO_PHIEU" class="form-control form-control-sm" readonly="readonly" value="@ViewBag.id" />
+                @Html.ValidationMessageFor(model => model.SO_PHIEU, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            @Html.LabelFor(model => model.MA_DICHVU, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MA_DICHVU", null, htmlAttributes: new { @class = "form-control form-control-sm" })
+                @Html.ValidationMessageFor(model => model.MA_DICHVU, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            @Html.LabelFor(model => model.SOLUONG, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SOLUONG, new { htmlAttributes = new { @class = "form-control form-control-sm", @type="number" } })
+                @Html.ValidationMessageFor(model => model.SOLUONG, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="javascript: history.go(-1)">Quay lại</a>
+</div>

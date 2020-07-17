@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Cập nhật trạng thái phòng";
+    Layout = "~/Areas/Admin/Views/Shared/_VatTuLayout.cshtml";
+}
+
+<h4 class="text-center">Cập nhật trạng thái phòng</h4>
+<div>
+    @using (Html.BeginForm("CapNhatTrangThaiPhong", "VatTu", FormMethod.Post))
+    {
+        <table align="center" class="table1">
+            <tr>
+                <td>
+                    <div>Phòng</div>
+                </td>
+                <td>
+                    <input type="text" name="maP" value="@ViewBag.maP" class="form-control" readonly />
+                </td>
+
+            </tr>
+            <tr>
+                <td>Trạng thái phòng</td>
+                <td>
+                    @Html.DropDownList("maTT", null, new { @class="form-control"})
+                </td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" class="btn btn-sm btn-primary">Cập nhật</button>
+
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+
+<div>
+    <a href="javascript: history.go(-1)">Quay lại</a>
+</div>

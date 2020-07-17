@@ -11,7 +11,8 @@ namespace QLKS_H2O.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class NHANVIEN
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +20,13 @@ namespace QLKS_H2O.Models
         {
             this.PHIEU_THUEPHONG = new HashSet<PHIEU_THUEPHONG>();
         }
-    
+
+        [DisplayName("Mã nhân viên")]
         public string MA_NHANVIEN { get; set; }
         public string PASSWORD { get; set; }
+        [DisplayName("Tên nhân viên")]
         public string HOTEN_NHANVIEN { get; set; }
-        public Nullable<System.DateTime> NGAYSINH { get; set; }
+        public System.DateTime NGAYSINH { get; set; }
         public string DIENTHOAI { get; set; }
         public string DIACHI { get; set; }
         public string BOPHAN { get; set; }

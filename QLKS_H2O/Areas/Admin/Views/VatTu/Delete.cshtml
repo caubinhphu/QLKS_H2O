@@ -1,0 +1,34 @@
+﻿@model QLKS_H2O.Models.VATTU
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_VatTuLayout.cshtml";
+}
+
+<h3>Bạn có chắc muốn xóa vật tư này khỏi danh sách?</h3>
+<div>
+    <hr />
+    <table class="table table-bordered table-striped text-center">
+        <tr>
+            <th>Mã vật tư</th>
+            <th>Tên vật tư</th>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayFor(model => model.MA_VATTU)</td>
+            <td>@Html.DisplayFor(model => model.TEN_VATTU)</td>
+        </tr>
+
+    </table>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-success" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>
+
+

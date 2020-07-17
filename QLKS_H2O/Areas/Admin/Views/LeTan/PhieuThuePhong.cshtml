@@ -1,0 +1,150 @@
+﻿@model QLKS_H2O.Models.PHIEU_THUEPHONG
+@{
+    ViewBag.Title = "Phiếu thuê phòng";
+    Layout = "~/Areas/Admin/Views/Shared/_LeTanLayout.cshtml";
+}
+
+<h4 class="text-center mb-3">PHIẾU THUÊ PHÒNG</h4>
+<table class="table table-sm text-left">
+    <tr>
+        <th>Số phiếu</th>
+        <td id="idphieu">
+            @Html.DisplayFor(model => model.SO_PHIEU)
+        </td>
+        <th>Mã khách</th>
+        <td>
+            @Html.DisplayFor(model => model.MAKHACH)
+        </td>
+        <th>Điện thoại</th>
+        <td>
+            @Html.DisplayFor(model => model.KHACH.DIENTHOAI)
+        </td>
+    </tr>
+    <tr>
+        <th>Ngày đến</th>
+        <td>
+            @Model.NGAYDEN.ToString("dd/MM/yyyy")
+        </td>
+        <th>Tên khách</th>
+        <td>
+            @Html.DisplayFor(model => model.KHACH.HOTEN_KHACH)
+        </td>
+        <th>Quốc tịch</th>
+        <td>
+            @Html.DisplayFor(model => model.KHACH.QUOCTICH)
+        </td>
+    </tr>
+    <tr>
+        <th>Ngày đi</th>
+        <td>
+            @Model.NGAYDI.ToString("dd/MM/yyyy")
+        </td>
+        <th>CMND/PASSPORT</th>
+        <td>
+            @Html.DisplayFor(model => model.KHACH.CMND)
+        </td>
+        <th></th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>Ngày lập phiếu</th>
+        <td>
+            @Model.NGAYLAP_PHIEU.ToString("dd/MM/yyyy")
+        </td>
+        <th>Giới tính</th>
+        <td>
+            @(Model.KHACH.GIOITINH ? "Nam" : "Nữ")
+        </td>
+        <th></th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>Nhân viên lập phiếu</th>
+        <td>
+            @Html.DisplayFor(model => model.NHANVIEN.HOTEN_NHANVIEN)
+        </td>
+        <th>Ngày sinh</th>
+        <td>
+            @Model.KHACH.NGAYSINH.ToString("dd/MM/yyyy")
+        </td>
+        <th></th>
+        <td></td>
+    </tr>
+</table>
+
+<div class="row mt-3">
+    <div class="col">
+        <h5 class="text-center">Phòng thuê</h5>
+        <table class="table table-sm text-center table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>STT</th>
+                    <th>Phòng</th>
+                    <th>Số người</th>
+                </tr>
+            </thead>
+            <tbody id="bodyphong">
+                @{int indexPhong = 0;}
+                @foreach (var ctThuePhong in Model.CHITIET_THUEPHONG)
+                {
+                    <tr>
+                        <td>
+                            @{ indexPhong++;}
+                            @indexPhong
+                        </td>
+                        <td>
+                            @ctThuePhong.MAPHONG
+                        </td>
+                        <td>
+                            @ctThuePhong.SONGUOI
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col" id="dvthue">
+        <h5 class="text-center">Dich vụ thuê</h5>
+        <table class="table table-sm text-center table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>STT</th>
+                    <th>Dịch vụ</th>
+                    <th>Số lượng</th>
+                </tr>
+            </thead>
+            <tbody id="bodydichvu">
+                @{int indexDichVu = 0;}
+                @foreach (var ctThueDV in Model.CHITIET_THUEDICHVU)
+                {
+                    <tr>
+                        <td>
+                            @{ indexDichVu++;}
+                            @indexDichVu
+                        </td>
+                        <td>
+                            @ctThueDV.DICHVU.TEN_DICHVU
+                        </td>
+                        <td>
+                            @ctThueDV.SOLUONG
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="text-center mt-4">
+    @if (Model.DATRAPHONG == true)
+    {
+        <a href="@Url.Action("XoaPhieuThuePhong", new { id = Model.SO_PHIEU})" class="btn btn-sm btn-danger">Xóa</a>
+    }
+    else
+    {
+        <a href="@Url.Action("Traphong", new { id = Model.SO_PHIEU})" class="btn btn-sm btn-success">Trả phòng</a>
+        <a href="@Url.Action("SuaPhieuThuePhong", new { id = Model.SO_PHIEU})" class="btn btn-sm btn-secondary">Cập nhật</a>
+    }
+</div>
+
+@Html.ActionLink("Quay lại", "DanhSachPhieuThue")

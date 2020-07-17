@@ -1,0 +1,223 @@
+﻿@model QLKS_H2O.Models.PHIEU_THUEPHONG
+
+@{
+    Layout = null;
+    int indexPhong = 0;
+    int indexDichVu = 0;
+    decimal tienPhong = 0;
+    decimal tienDichVu = 0;
+    decimal tienTra = 0;
+    int soNgay = (int)((Model.NGAYDI - Model.NGAYDEN).Ticks / 864e9);
+    if (soNgay <= 0)
+    {
+        soNgay = 1;
+    }
+
+    // chuyển từ số sang dạn word: 100 -> một trăm
+    string NumberToWords(int number)
+    {
+        if (number == 0) return "không";
+
+        if (number < 0) return "âm " + NumberToWords(Math.Abs(number));
+
+        string words = "";
+
+        if ((number / 1000000) > 0)
+        {
+            words += NumberToWords(number / 1000000) + " triệu ";
+            number %= 1000000;
+        }
+
+        if ((number / 1000) > 0)
+        {
+            words += NumberToWords(number / 1000) + " nghìn ";
+            number %= 1000;
+        }
+
+        if ((number / 100) > 0)
+        {
+            words += NumberToWords(number / 100) + " trăm ";
+            number %= 100;
+        }
+
+        if (number > 0)
+        {
+            var unitsMap = new[] { "không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín", "mười" };
+            var tensMap = new[] { "không", "mười", "hai mươi", "ba mươi", "bốn mươi", "năm mươi", "sáu mươi", "bảy mươi", "tám mươi", "chín mươi" };
+
+            if (number < 10)
+                words += unitsMap[number];
+            else
+            {
+                words += tensMap[number / 10];
+                if ((number % 10) > 0)
+                    words += " " + unitsMap[number % 10];
+            }
+        }
+
+        return words;
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CreateHoaDon</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="mx-auto p-3" style="width: 760px;">
+        <div class="d-flex px-5">
+            <div class="flex-fill">
+                <img src="/Images/logo.png" alt="H2O" width="200px" />
+            </div>
+            <div class="flex-fill pl-5">
+                <div>
+                    <h4>KHÁCH SẠN H2O</h4>
+                </div>
+                <div>
+                    <b>Địa chỉ: 39 Yết Kiêu, Hòa Thắng, Phú Hòa, Phú Yên</b>
+                </div>
+                <div>
+                    <b>Điện thoại: 03698548754</b>
+                </div>
+            </div>
+        </div>
+        <h3 class="text-center mt-4">HÓA ĐƠN THANH TOÁN</h3>
+        <div class="p-4">
+            <table class="table table-sm table-borderless">
+                <tr>
+                    <th>Họ và tên khách hàng</th>
+                    <td>@Model.KHACH.HOTEN_KHACH</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>CMND/PASSPORT</th>
+                    <td>@Model.KHACH.CMND</td>
+                    <th>Quốc tịch</th>
+                    <td>@Model.KHACH.QUOCTICH</td>
+                </tr>
+                <tr>
+                    <th>Điện thoại</th>
+                    <td>@Model.KHACH.DIENTHOAI</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <b>Chi tiết sử dụng phòng</b>
+            <table class="table table-sm text-center table-bordered">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Phòng</th>
+                        <th>Loại phòng</th>
+                        <th>Số ngày</th>
+                        <th>Đơn giá (một đêm)</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody id="phongBody">
+                    @foreach (var ctThuePhong in Model.CHITIET_THUEPHONG)
+                    {
+                        <tr>
+                            <td>
+                                @{indexPhong++;}
+                                @indexPhong
+                            </td>
+                            <td>@ctThuePhong.MAPHONG</td>
+                            <td>@ctThuePhong.PHONG.LOAIPHONG.TEN_LOAIPHONG</td>
+                            <td>@soNgay</td>
+                            <td>@(String.Format("{0,1:N1}", ctThuePhong.GIAPHONG))đ</td>
+                            <td>@(String.Format("{0,1:N1}", ctThuePhong.GIAPHONG * (decimal)soNgay))đ</td>
+                            @{ tienPhong += (decimal)ctThuePhong.GIAPHONG * (decimal)soNgay;}
+
+                        </tr>
+                    }
+                    <tr>
+                        <td colspan="5">
+                            <b>Tổng cộng</b>
+                        </td>
+                        <td>@(String.Format("{0,1:N1}", tienPhong))đ</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <b>Chi tiết sử dụng dịch vụ</b>
+            <table class="table table-sm text-center table-bordered">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Dịch vụ</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody id="dichVuBody">
+                    @foreach (var ctThueDV in Model.CHITIET_THUEDICHVU)
+                    {
+                        <tr>
+                            <td>
+                                @{indexDichVu++;}
+                                @indexDichVu
+                            </td>
+                            <td>@ctThueDV.DICHVU.TEN_DICHVU</td>
+                            <td>@ctThueDV.SOLUONG</td>
+                            <td>@(String.Format("{0,1:N1}", ctThueDV.GIA_DICHVU))đ</td>
+                            <td>@(String.Format("{0,1:N1}", ctThueDV.GIA_DICHVU * ctThueDV.SOLUONG))đ</td>
+                            @{ tienDichVu += (decimal)ctThueDV.GIA_DICHVU * ctThueDV.SOLUONG;}
+                        </tr>
+                    }
+                    <tr>
+                        <td colspan="4">
+                            <b>Tổng cộng</b>
+                        </td>
+                        <td>@(String.Format("{0,1:N1}", tienDichVu))đ</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-sm">
+                <tr>
+                    <th>Tổng tiền</th>
+                    <td id="tien" class="text-right">@(String.Format("{0,1:N1}", tienPhong + tienDichVu))đ</td>
+                </tr>
+                <tr>
+                    <th>Phí VAT</th>
+                    <td class="text-right">10%</td>
+                </tr>
+                <tr>
+                    <th>Tổng tiền thanh toán</th>
+                    @{tienTra = ((decimal)(tienPhong + tienDichVu)) * (decimal)1.1;}
+                    <td class="text-right">@String.Format("{0,1:N1}", tienTra)</td>
+                </tr>
+            </table>
+            <div class="my-3">
+                <b>Số tiền ghi bằng chữ: </b>
+                <span>@NumberToWords((int)tienTra) đồng</span>
+            </div>
+            <div class="text-right pr-5 mb-3">
+                <i>Ngày @(Model.NGAYDI.Day) tháng @(Model.NGAYDI.Month) năm @(Model.NGAYDI.Year)</i>
+            </div>
+            <div class="d-flex justify-content-around text-center">
+                <div>
+                    <b>Khách hàng</b>
+                    <br />
+                    <b>(Ký, họ tên)</b>
+                </div>
+                <div>
+                    <b>Người lập phiếu</b>
+                    <br />
+                    <b>(Ký, họ tên)</b>
+                    <br />
+                    <span>@Model.NHANVIEN.HOTEN_NHANVIEN</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

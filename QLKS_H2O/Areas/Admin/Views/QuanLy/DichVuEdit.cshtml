@@ -1,0 +1,51 @@
+﻿@model QLKS_H2O.Models.DICHVU
+
+@{
+    ViewBag.Title = "DichVuEdit";
+    Layout = "~/Areas/Admin/Views/Shared/_QuanLyLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal w-75 mx-auto">
+    <h4>Thông tin dịch vụ</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.MA_DICHVU)
+
+    <div class="form-group d-flex align-items-center">
+        @Html.LabelFor(model => model.MA_DICHVU, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MA_DICHVU, new { htmlAttributes = new { @class = "form-control form-control-sm", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.TEN_DICHVU, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group d-flex align-items-center">
+        @Html.LabelFor(model => model.TEN_DICHVU, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TEN_DICHVU, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+            @Html.ValidationMessageFor(model => model.TEN_DICHVU, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group d-flex align-items-center">
+        @Html.LabelFor(model => model.GIA_DICHVU, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GIA_DICHVU, new { htmlAttributes = new { @class = "form-control form-control-sm", @type = "number" } })
+            @Html.ValidationMessageFor(model => model.GIA_DICHVU, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lưu" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Quay lại", "DichVuIndex")
+</div>

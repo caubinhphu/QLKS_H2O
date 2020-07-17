@@ -1,0 +1,44 @@
+﻿
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section style {
+    <link href="~/Content/footer-grid.css" rel="stylesheet" />
+}
+
+@section navtop {
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/Admin/QuanLy/ThongKeThuePhong">QUẢN LÝ</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
+            <ul class="navbar-nav w-100">
+                <li class="nav-item">
+                    <a class="nav-link @(ViewBag.tag == "loaiphong" ? "active" : "")" href="/Admin/QuanLy/LoaiPhongIndex">Loại phòng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewBag.tag == "phong" ? "active" : "")" href="/Admin/QuanLy/PhongIndex">Phòng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewBag.tag == "dichvu" ? "active" : "")" href="/Admin/QuanLy/DichVuIndex">Dịch vụ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewBag.tag == "tkphong" ? "active" : "")" href="/Admin/QuanLy/ThongKeThuePhong">Thống kê thuê phòng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewBag.tag == "tkdichvu" ? "active" : "")" href="/Admin/QuanLy/ThongKeThueDichVu">Thống kê thuê dich vụ</a>
+                </li>
+                <li class="ml-auto">
+                    <span class="text-white">@ViewBag.username</span>
+                    <a role="button" class="btn btn-secondary" id="logout" href="/Admin/Login/Logout">Đăng xuất</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+}
+
+@RenderBody()

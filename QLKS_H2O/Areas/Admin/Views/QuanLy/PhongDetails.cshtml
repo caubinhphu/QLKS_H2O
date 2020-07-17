@@ -1,0 +1,43 @@
+﻿@model QLKS_H2O.Models.PHONG
+
+@{
+    ViewBag.Title = "PhongDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_QuanLyLayout.cshtml";
+}
+
+<h2>PhongDetails</h2>
+
+<div>
+    <h4>PHONG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GIAPHONG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIAPHONG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOAIPHONG.TEN_LOAIPHONG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOAIPHONG.TEN_LOAIPHONG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TRANGTHAI_PHONG.TEN_TRANGTHAI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TRANGTHAI_PHONG.TEN_TRANGTHAI)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "PhongEdit", new { id = Model.MA_PHONG }) |
+    @Html.ActionLink("Quay lại", "PhongIndex")
+</p>

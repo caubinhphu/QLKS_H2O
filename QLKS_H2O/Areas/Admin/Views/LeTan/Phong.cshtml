@@ -1,0 +1,85 @@
+﻿@model QLKS_H2O.Models.PHONG
+
+@{
+    ViewBag.Title = "Phòng";
+    Layout = "~/Areas/Admin/Views/Shared/_LeTanLayout.cshtml";
+}
+
+<div>
+    <h4 class="text-center">THÔNG TIN PHÒNG</h4>
+    <hr />
+    <div class="row px-5">
+        <table class="table table-bordered table-striped col-5">
+            <tr>
+                <th>Mã phòng</th>
+                <td>@Model.MA_PHONG</td>
+            </tr>
+            <tr>
+                <th>Loại phòng</th>
+                <td>@Model.LOAIPHONG.TEN_LOAIPHONG</td>
+            </tr>
+            <tr>
+                <th>Trạng thái</th>
+                <td>@Model.TRANGTHAI_PHONG.TEN_TRANGTHAI</td>
+            </tr>
+            <tr>
+                <th>Giá phòng</th>
+                <td>@(String.Format("{0,1:N1}", Model.GIAPHONG))</td>
+            </tr>
+        </table>
+        <table class="table table-bordered table-striped table-sm col-5 text-center mx-auto">
+            @{int index = 0;}
+            <thead>
+                <tr>
+                    <th colspan="3">Vật tư</th>
+                </tr>
+                <tr>
+                    <th>STT</th>
+                    <th>Vật tư</th>
+                    <th>Số lượng</th>
+                </tr>
+            </thead>
+            @foreach (var vatTu in Model.LOAIPHONG.VATTU_LOAIPHONG)
+            {
+                <tr>
+                    <td>
+                        @{ index++; }
+                        @index
+                    </td>
+                    <td>@vatTu.VATTU.TEN_VATTU</td>
+                    <td>@vatTu.SOLUONG</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <hr />
+    <div class="px-5">
+        @if (ViewBag.phieuThue != null)
+        {
+            <table class="table tale-sm table-striped text-center table-sm">
+                <tr>
+                    <th colspan="6">Thông tin phiếu thuê đang thuê phòng</th>
+                </tr>
+                <tr>
+                    <th>Mã phiếu</th>
+                    <th>Ngày lập phiếu</th>
+                    <th>Ngày đến</th>
+                    <th>Ngày đi</th>
+                    <th>Khách thuê</th>
+                    <th>Nhân viên lập phiếu</th>
+                </tr>
+                <tr>
+                    <td>
+                       <a href="/Admin/LeTan/PhieuThuePhong/@ViewBag.phieuThue.SO_PHIEU">@ViewBag.phieuThue.SO_PHIEU</a>
+                    </td>
+                    <td>@ViewBag.phieuThue.NGAYLAP_PHIEU.ToString("dd/MM/yyyy")</td>
+                    <td>@ViewBag.phieuThue.NGAYDEN.ToString("dd/MM/yyyy")</td>
+                    <td>@ViewBag.phieuThue.NGAYDI.ToString("dd/MM/yyyy")</td>
+                    <td>@ViewBag.phieuThue.KHACH.HOTEN_KHACH</td>
+                    <td>@ViewBag.phieuThue.NHANVIEN.HOTEN_NHANVIEN</td>
+                </tr>
+            </table>
+        }
+    </div>
+</div>
+

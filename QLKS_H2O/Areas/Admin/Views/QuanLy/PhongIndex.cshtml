@@ -1,0 +1,64 @@
+﻿@model IEnumerable<QLKS_H2O.Models.PHONG>
+
+@{
+    ViewBag.Title = "PhongIndex";
+    Layout = "~/Areas/Admin/Views/Shared/_QuanLyLayout.cshtml";
+    var grid = new WebGrid(Model, canPage: true, rowsPerPage: 7);
+}
+
+<h3 class="text-center my-2">Danh Sách Phòng</h3>
+
+<p>@Html.ActionLink("Thêm mới Phòng ", "PhongCreate")</p>
+<div>
+    @using (Html.BeginForm("PhongIndex", "QuanLy", FormMethod.Get))
+    {
+        <table align="center" class="table1">
+            <tr>
+                <td>
+                    <div> Mã phòng</div>
+                </td>
+                <td>
+                    <input type="text" name="maP" value="@ViewBag.maP" class="form-control" />
+                </td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" class="btn btn-sm btn-primary">Tìm kiếm</button>
+                    <a href="/Admin/QuanLy/PhongIndex" role="button" class="btn btn-sm btn-primary">Nhập mới</a>
+
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+
+@if (Model.Count() > 0)
+{
+    <div id="gridContent">
+        @ViewBag.TB
+        @grid.GetHtml(
+            tableStyle: "table table-bordered table-hover text-center",
+            footerStyle: "grid-footer",
+            fillEmptyRows: true,
+            mode: WebGridPagerModes.Numeric,
+            alternatingRowStyle: "alternatingRowStyle",
+              columns: new[]  // colums in grid
+             {
+                grid.Column("STT",format: item => item.WebGrid.Rows.IndexOf(item) + 1),
+                grid.Column("MA_PHONG","Mã Phòng"), //the model fields to display
+                grid.Column("LOAIPHONG.TEN_LOAIPHONG","Loại Phòng"),
+                grid.Column("GIAPHONG","Giá Phòng"),
+                grid.Column("Thao tác", format: @<text>
+    <a href="@Url.Action("PhongEdit", new { id = item.MA_PHONG})" class="btn btn-sm btn-warning">Sửa</a>
+    <a href="@Url.Action("PhongDelete",new { id = item.MA_PHONG})" class="btn btn-sm btn-danger">Xóa</a>
+                </text>),
+}
+)
+    </div>
+}
+else
+{
+    <b>Không có phòng nào được tìm thấy</b>
+}

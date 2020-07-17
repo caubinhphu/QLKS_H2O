@@ -1,0 +1,115 @@
+﻿@model QLKS_H2O.Areas.Admin.Models.PhieuLapModel
+
+@{
+    ViewBag.Title = "Thuê phòng";
+    Layout = "~/Areas/Admin/Views/Shared/_LeTanLayout.cshtml";
+}
+
+<div class="p-3" id="main">
+    <h3 class="text-center">PHIẾU THUÊ PHÒNG</h3>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger w-50 mx-auto" })
+        <div class="row">
+            <div class="col-5 mx-auto">
+                <table class="table table-sm table-borderless">
+                    <tr>
+                        <th>Họ tên khách</th>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" id="hoten" required name="tenkhach">
+                            @Html.ValidationMessageFor(model => model.tenkhach, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>CMND/PassPort</th>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" id="cmnd" required name="cmnd" maxlength="10">
+                            @Html.ValidationMessageFor(model => model.cmnd, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ngày sinh</th>
+                        <td>
+                            <input type="date" class="form-control form-control-sm" id="ngaysinh" required name="ngaysinh" max="@DateTime.Now.AddYears(-18).ToString("yyyy-MM-dd")">
+                            @Html.ValidationMessageFor(model => model.ngaysinh, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Giới tính</th>
+                        <td>
+                            <input type="radio" value="1" name="gioitinh" id="gioitinhnam" checked="checked" />
+                            <label for="gioitinhnam">Nam</label>
+                            <input type="radio" value="0" name="gioitinh" id="gioitinhnu" />
+                            <label for="gioitinhnu">Nữ</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Điện thoại</th>
+                        <td>
+                            <input type="tel" class="form-control form-control-sm" id="dienthoai" required name="dienthoai" pattern="0[0-9]{8}">
+                            @Html.ValidationMessageFor(model => model.dienthoai, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Quốc tịch</th>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" id="quoctich" required name="quoctich">
+                            @Html.ValidationMessageFor(model => model.quoctich, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ngày đi</th>
+                        <td>
+                            <input type="date" class="form-control form-control-sm" id="ngaydi" required name="ngaydi" min="@DateTime.Now.ToString("yyyy-MM-dd")">
+                            @Html.ValidationMessageFor(model => model.ngaydi, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-5 mx-auto">
+                <div>
+                    <h5 class="text-center">Phòng thuê</h5>
+                    <div class="w-75 mx-auto d-flex justify-content-around">
+                        <div>Phòng</div>
+                        <div>Số người</div>
+                    </div>
+                    <div id="thuephong" class="w-75 mx-auto">
+                        <div class="d-flex">
+                            <select name="phong" id="phong" class="form-control form-control-sm">
+                                @foreach (var p in ViewBag.phong)
+                                {
+                                    <option value="@p.MA_PHONG">@(p.MA_PHONG) @(p.LOAIPHONG.TEN_LOAIPHONG)</option>
+                                }
+                            </select>
+                            <input type="text" class="form-control form-control-sm" value="1" required name="songuoi">
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-secondary btn-sm mt-2" id="btnthemphong" type="button">Thêm phòng</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="mt-2">
+                    <h5 class="text-center">Dịch vụ thuê</h5>
+                    <div class="w-75 mx-auto d-flex justify-content-around">
+                        <div>Dịch vụ</div>
+                        <div>Số lượng</div>
+                    </div>
+                    <div id="thuedichvu" class="w-75 mx-auto"></div>
+                    <div class="text-right">
+                        <button class="btn btn-secondary btn-sm mt-2" id="btnthemdichvu" type="button">Thêm dịch vụ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-success" id="btnOK" type="submit">Xác nhận</button>
+        </div>
+    }
+</div>
+
+@Html.DropDownList("dichVus", null, new { @style = "display: none" })
+
+@section letan_script {
+    <script src="~/Scripts/LeTan/thuephong.js"></script>
+}

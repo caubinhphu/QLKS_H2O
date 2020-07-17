@@ -1,0 +1,31 @@
+﻿@model List<QLKS_H2O.Models.THONGKE_PHONG_Result>
+@{
+    ViewBag.Title = "Thống kê thuê phòng";
+    Layout = "~/Areas/Admin/Views/Shared/_QuanLyLayout.cshtml";
+    int i = 0;
+}
+<h3 class="text-center">THỐNG KÊ THUÊ PHÒNG</h3>
+<table class="table table-sm text-center table-bordered mx-auto w-50">
+    <tr>
+        <th class="text-center">STT</th>
+        <th class="text-center">Phòng</th>
+        <th class="text-center">Số lần thuê</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{i++;}
+                @i
+            </td>
+            <td>
+                @item.MA_PHONG
+            </td>
+            <td>
+                @item.soLan
+            </td>
+        </tr>
+    }
+
+</table>
+

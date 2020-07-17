@@ -1,0 +1,89 @@
+﻿@model List<QLKS_H2O.Areas.Admin.Models.HoaDonModel>
+
+@{
+    ViewBag.Title = "Kế toán: Hóa đơn";
+    Layout = "~/Areas/Admin/Views/Shared/_KeToanLayout.cshtml";
+    ViewBag.tag = "hoadon";
+    //int index = 0;
+    var grid = new WebGrid(source: Model, canPage: true, defaultSort: "ngayDi", rowsPerPage: 1);
+}
+
+<h4 class="text-center my-2">DANH SÁCH HÓA ĐƠN</h4>
+
+@using (Html.BeginForm("Index", "KeToan", FormMethod.Get)) {
+<table class="w-50 mx-auto my-2">
+    <tr>
+        <th>
+            <label for="billid">Mã phiếu</label>
+        </th>
+        <th>
+            <input type="text" name="billid" id="billid" value="@ViewBag.billid" class="form-control form-control-sm" />
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <label for="datecreate">Ngày lập hóa đơn</label>
+        </th>
+        <th>
+            <input type="date" name="datecreate" id="datecreate" value="@ViewBag.datecreate" class="form-control form-control-sm" />
+        </th>
+    </tr>
+    <tr>
+        <th>Tổng tiền</th>
+        <td>
+            <label for="summin" class="d-inline">Từ</label>
+            <input type="number" name="summin" id="summin" value="@ViewBag.summin" class="form-control form-control-sm d-inline" />
+        </td>
+        <td>
+            <label for="summax" class="d-inline">Đến</label>
+            <input type="number" name="summax" id="summax" value="@ViewBag.summax" class="form-control form-control-sm d-inline" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" class="text-right">
+            <button type="button" class="btn btn-secondary btn-sm" id="btnreset">Nhập lại</button>
+            <button type="submit" class="btn btn-success btn-sm">Tìm kiếm</button>
+        </td>
+    </tr>
+</table>
+}
+
+<div id="grid-main">
+    @grid.GetHtml(
+     tableStyle: "table table-sm text-center table-bordered table-striped",
+     headerStyle: "thead-dark",
+     footerStyle: "grid-footer",
+     fillEmptyRows: false,
+     mode: WebGridPagerModes.Numeric,
+     columns: new[]
+      {
+            grid.Column("STT",format: item => 
+                item.WebGrid.Rows.IndexOf(item) + 1 
+                + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage)
+                * grid.RowsPerPage * grid.PageIndex),
+            grid.Column("maPhieu", "Mã phiếu"),
+            grid.Column("ngayDen", "Ngày đến", item => item.ngayDen.ToString("dd/MM/yyyy")),
+            grid.Column("ngayDi", "Ngày đi", item => item.ngayDi.ToString("dd/MM/yyyy")),
+            grid.Column("tienPhong", "Tổng tiền phòng", item => item.tienPhong.ToString("#,##0.0")),
+            grid.Column("tienDichVu", "Tổng tiền dịch vụ", item => item.tienDichVu.ToString("#,##0.0")),
+            grid.Column("tongTien", "Tổng tiền", item => item.tongTien.ToString("#,##0.0")),
+            grid.Column(format: item => Html.ActionLink("Chi tiết", "HoaDon", "KeToan", new { id = item.maPhieu}, null))
+      }
+    )
+</div>
+
+<div class="text-right">
+    @Html.ActionLink("Download", "DownloadHoaDon", "KeToan", 
+        new { billid = ViewBag.billid, datecreate = ViewBag.datecreate, summin = ViewBag.summin, summax = ViewBag.summax }, 
+        new { @class = "btn btn-success btn-sm" }
+    )
+</div>
+
+<script>
+    document.getElementById('btnreset').addEventListener('click', () => {
+        document.getElementById('billid').value = '';
+        document.getElementById('datecreate').value = '';
+        document.getElementById('summin').value = 0;
+        document.getElementById('summax').value = '';
+    });
+</script>

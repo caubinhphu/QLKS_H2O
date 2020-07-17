@@ -1,0 +1,125 @@
+﻿@model QLKS_H2O.Models.PHIEU_THUEPHONG
+@{
+    ViewBag.Title = "Kế toán: Hóa đơn";
+    Layout = "~/Areas/Admin/Views/Shared/_KeToanLayout.cshtml";
+    ViewBag.tag = "hoadon";
+    int indexPhong = 0;
+    int indexDichVu = 0;
+    decimal tienPhong = 0;
+    decimal tienDichVu = 0;
+    decimal tienTra = 0;
+    double soNgay = (Model.NGAYDI - Model.NGAYDEN).Ticks / 864e9;
+}
+
+<div class="mx-auto p-3" style="border: 1px solid black; border-radius: 5px; box-shadow: 5px 5px 10px #808080; width: 760px;">
+    <h3 class="text-center mt-4">HÓA ĐƠN THANH TOÁN</h3>
+    <div class="p-4">
+        <table class="table table-sm table-borderless">
+            <tr>
+                <th>Họ và tên khách hàng</th>
+                <td>@Model.KHACH.HOTEN_KHACH</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>CMND/PASSPORT</th>
+                <td>@Model.KHACH.CMND</td>
+                <th>Quốc tịch</th>
+                <td>@Model.KHACH.QUOCTICH</td>
+            </tr>
+            <tr>
+                <th>Điện thoại</th>
+                <td>@Model.KHACH.DIENTHOAI</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <b>Chi tiết sử dụng phòng</b>
+        <table class="table table-sm text-center table-bordered">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Phòng</th>
+                    <th>Loại phòng</th>
+                    <th>Số ngày</th>
+                    <th>Đơn giá (một đêm)</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody id="phongBody">
+                @foreach (var ctThuePhong in Model.CHITIET_THUEPHONG)
+                {
+                    <tr>
+                        <td>
+                            @{indexPhong++;}
+                            @indexPhong
+                        </td>
+                        <td>@ctThuePhong.MAPHONG</td>
+                        <td>@ctThuePhong.PHONG.LOAIPHONG.TEN_LOAIPHONG</td>
+                        <td>@soNgay</td>
+                        <td>@(String.Format("{0,1:N1}", ctThuePhong.GIAPHONG))đ</td>
+                        <td>@(String.Format("{0,1:N1}", ctThuePhong.GIAPHONG * (decimal)soNgay))đ</td>
+                        @{ tienPhong += (decimal)ctThuePhong.GIAPHONG* (decimal)soNgay;}
+
+                    </tr>
+                            }
+                <tr>
+                    <td colspan="5">
+                        <b>Tổng cộng</b>
+                    </td>
+                    <td>@(String.Format("{0,1:N1}", tienPhong))đ</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <b>Chi tiết sử dụng dịch vụ</b>
+        <table class="table table-sm text-center table-bordered">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Dịch vụ</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody id="dichVuBody">
+                @foreach (var ctThueDV in Model.CHITIET_THUEDICHVU)
+                {
+                    <tr>
+                        <td>
+                            @{indexDichVu++;}
+                            @indexDichVu
+                        </td>
+                        <td>@ctThueDV.DICHVU.TEN_DICHVU</td>
+                        <td>@ctThueDV.SOLUONG</td>
+                        <td>@(String.Format("{0,1:N1}", ctThueDV.GIA_DICHVU))đ</td>
+                        <td>@(String.Format("{0,1:N1}", ctThueDV.GIA_DICHVU * ctThueDV.SOLUONG))đ</td>
+                        @{ tienDichVu += (decimal)ctThueDV.GIA_DICHVU * ctThueDV.SOLUONG;}
+                    </tr>
+                }
+                <tr>
+                    <td colspan="4">
+                        <b>Tổng cộng</b>
+                    </td>
+                    <td>@(String.Format("{0,1:N1}", tienDichVu))đ</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm">
+            <tr>
+                <th>Tổng tiền</th>
+                <td id="tien" class="text-right">@(String.Format("{0,1:N1}", tienPhong + tienDichVu))đ</td>
+            </tr>
+        </table>
+        
+        <div class="text-right pr-5 mb-3">
+            <i>Ngày @(Model.NGAYDI.Day) tháng @(Model.NGAYDI.Month) năm @(Model.NGAYDI.Year)</i>
+        </div>
+    </div>
+</div>
+
+<a href="@Request.UrlReferrer">Quay lại</a>
+

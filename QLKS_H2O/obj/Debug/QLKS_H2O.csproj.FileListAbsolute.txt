@@ -81,3 +81,8 @@ E:\N2019_2020_K2\UDWeb\BTnhom\QLKS_H2O\QLKS_H2O\obj\Debug\QLKS_H2O.csproj.CoreCo
 E:\N2019_2020_K2\UDWeb\BTnhom\QLKS_H2O\QLKS_H2O\obj\Debug\QLKS_H2O.csproj.CopyComplete
 E:\N2019_2020_K2\UDWeb\BTnhom\QLKS_H2O\QLKS_H2O\obj\Debug\QLKS_H2O.dll
 E:\N2019_2020_K2\UDWeb\BTnhom\QLKS_H2O\QLKS_H2O\obj\Debug\QLKS_H2O.pdb
+E:\N2019_2020_K2\UDWeb\BTnhom\QLKS_H2O\QLKS_H2O\bin\EPPlus.dll
+E:\N2019_2020_K2\UDWeb\BTnhom\QLKS_H2O\QLKS_H2O\bin\EPPlus.xml
+E:\N2019_2020_K2\UDWeb\BTnhom\QLKS_H2O\QLKS_H2O\bin\Select.HtmlToPdf.dll
+E:\N2019_2020_K2\UDWeb\BTnhom\QLKS_H2O\QLKS_H2O\bin\Select.HtmlToPdf.xml
+E:\N2019_2020_K2\UDWeb\BTnhom\QLKS_H2O\QLKS_H2O\bin\Select.Html.dep

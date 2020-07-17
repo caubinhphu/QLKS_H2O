@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="QLKS_H2OModelStoreContainer" CdmEntityContainer="QLKS_H2OEntities">
+    <EntitySetMapping Name="CHITIET_THUEDICHVU">
+      <EntityTypeMapping TypeName="QLKS_H2OModel.CHITIET_THUEDICHVU">
+        <MappingFragment StoreEntitySet="CHITIET_THUEDICHVU">
+          <ScalarProperty Name="SO_PHIEU" ColumnName="SO_PHIEU" />
+          <ScalarProperty Name="MA_DICHVU" ColumnName="MA_DICHVU" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="GIA_DICHVU" ColumnName="GIA_DICHVU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CHITIET_THUEPHONG">
       <EntityTypeMapping TypeName="QLKS_H2OModel.CHITIET_THUEPHONG">
         <MappingFragment StoreEntitySet="CHITIET_THUEPHONG">
@@ -8,16 +18,6 @@
           <ScalarProperty Name="MAPHONG" ColumnName="MAPHONG" />
           <ScalarProperty Name="SONGUOI" ColumnName="SONGUOI" />
           <ScalarProperty Name="GIAPHONG" ColumnName="GIAPHONG" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CT_THUE_DICHVU">
-      <EntityTypeMapping TypeName="QLKS_H2OModel.CT_THUE_DICHVU">
-        <MappingFragment StoreEntitySet="CT_THUE_DICHVU">
-          <ScalarProperty Name="SO_PHIEU" ColumnName="SO_PHIEU" />
-          <ScalarProperty Name="MA_DICHVU" ColumnName="MA_DICHVU" />
-          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
-          <ScalarProperty Name="GIA_DICHVU" ColumnName="GIA_DICHVU" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -33,9 +33,11 @@
     <EntitySetMapping Name="KHACHes">
       <EntityTypeMapping TypeName="QLKS_H2OModel.KHACH">
         <MappingFragment StoreEntitySet="KHACH">
+          <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+          <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
           <ScalarProperty Name="MA_KHACH" ColumnName="MA_KHACH" />
           <ScalarProperty Name="HOTEN_KHACH" ColumnName="HOTEN_KHACH" />
-          <ScalarProperty Name="CMND_PASSPORT" ColumnName="CMND/PASSPORT" />
+          <ScalarProperty Name="CMND" ColumnName="CMND" />
           <ScalarProperty Name="DIENTHOAI" ColumnName="DIENTHOAI" />
           <ScalarProperty Name="QUOCTICH" ColumnName="QUOCTICH" />
         </MappingFragment>
@@ -48,7 +50,6 @@
           <ScalarProperty Name="TEN_LOAIPHONG" ColumnName="TEN_LOAIPHONG" />
           <ScalarProperty Name="KICHTHUOC" ColumnName="KICHTHUOC" />
           <ScalarProperty Name="MAMAU" ColumnName="MAMAU" />
-          <ScalarProperty Name="GIATIEUCHUAN" ColumnName="GIATIEUCHUAN" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -88,16 +89,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TONTHATs">
-      <EntityTypeMapping TypeName="QLKS_H2OModel.TONTHAT">
-        <MappingFragment StoreEntitySet="TONTHAT">
-          <ScalarProperty Name="SO_PHIEU" ColumnName="SO_PHIEU" />
-          <ScalarProperty Name="MA_VATTU" ColumnName="MA_VATTU" />
-          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
-          <ScalarProperty Name="CHIPHI_BOITHUONG" ColumnName="CHIPHI_BOITHUONG" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TRANGTHAI_PHONG">
       <EntityTypeMapping TypeName="QLKS_H2OModel.TRANGTHAI_PHONG">
         <MappingFragment StoreEntitySet="TRANGTHAI_PHONG">
@@ -112,7 +103,6 @@
         <MappingFragment StoreEntitySet="VATTU">
           <ScalarProperty Name="MA_VATTU" ColumnName="MA_VATTU" />
           <ScalarProperty Name="TEN_VATTU" ColumnName="TEN_VATTU" />
-          <ScalarProperty Name="CHIPHI_BOITHUONG" ColumnName="CHIPHI_BOITHUONG" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -125,5 +115,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="THONGKE_DICHVU" FunctionName="QLKS_H2OModel.Store.THONGKE_DICHVU">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLKS_H2OModel.THONGKE_DICHVU_Result">
+          <ScalarProperty Name="MA_DICHVU" ColumnName="MA_DICHVU" />
+          <ScalarProperty Name="soLuong" ColumnName="soLuong" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="THONGKE_PHONG" FunctionName="QLKS_H2OModel.Store.THONGKE_PHONG">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLKS_H2OModel.THONGKE_PHONG_Result">
+          <ScalarProperty Name="MA_PHONG" ColumnName="MA_PHONG" />
+          <ScalarProperty Name="soLan" ColumnName="soLan" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -1,0 +1,50 @@
+﻿@model QLKS_H2O.Models.LOAIPHONG
+
+@{
+    ViewBag.Title = "LoaiPhongDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_QuanLyLayout.cshtml";
+}
+
+    <caption><h4><b>THÔNG TIN CHI TIẾT</b></h4></caption>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MA_LOAIPHONG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MA_LOAIPHONG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TEN_LOAIPHONG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEN_LOAIPHONG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KICHTHUOC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KICHTHUOC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MAMAU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MAMAU)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "LoaiPhongEdit", new { id = Model.MA_LOAIPHONG }) |
+    @Html.ActionLink("Quay lại", "LoaiPhongIndex")
+</p>

@@ -1,0 +1,86 @@
+﻿@model QLKS_H2O.Models.PHIEU_THUEPHONG
+
+@{
+    ViewBag.Title = "Phiếu thuê phòng";
+    Layout = "~/Areas/Admin/Views/Shared/_LeTanLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal w-75 mx-auto">
+        <h4>THÔNG TIN PHIẾU THUÊ PHÒNG</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group d-flex align-items-center">
+            <label for="SO_PHIEU" class="col-2">Số phiếu</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SO_PHIEU, new { htmlAttributes = new { @class = "form-control form-control-sm", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.SO_PHIEU, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            <label for="MAKHACH" class="col-2">Mã khách hàng</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MAKHACH, new { htmlAttributes = new { @class = "form-control form-control-sm", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.MAKHACH, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            <label for="MA_NHANVIEN" class="col-2">Mã nhân viên</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MA_NHANVIEN, new { htmlAttributes = new { @class = "form-control form-control-sm", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.MA_NHANVIEN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            <label for="NGAYLAP_PHIEU" class="col-2">Ngày lập phiếu</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NGAYLAP_PHIEU, new { htmlAttributes = new { @class = "form-control form-control-sm", Value = Model.NGAYLAP_PHIEU.ToString("yyyy-MM-dd") } })
+                @Html.ValidationMessageFor(model => model.NGAYLAP_PHIEU, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            <label for="NGAYDEN" class="col-2">Ngày đến</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NGAYDEN, new { htmlAttributes = new { @class = "form-control form-control-sm", Value = Model.NGAYDEN.ToString("yyyy-MM-dd") } })
+                @Html.ValidationMessageFor(model => model.NGAYDEN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            <label for="NGAYDI" class="col-2">Ngày đi</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NGAYDI, new { htmlAttributes = new { @class = "form-control form-control-sm", Value = Model.NGAYDI.ToString("yyyy-MM-dd") } })
+                @Html.ValidationMessageFor(model => model.NGAYDI, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-none">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DATRAPHONG)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <div class="d-flex">
+                    <input type="submit" value="Cập nhật" class="btn btn-sm btn-secondary" />
+                    <div class="ml-auto">
+                        <a href="/Admin/LeTan/SuaKhachHang/@Model.MAKHACH" role="button" class="btn btn-sm btn-info ml-auto">Cập nhật thông tin khách thuê phòng</a>
+                        <a href="/Admin/LeTan/ThemDichVu/@Model.SO_PHIEU" class="btn btn-sm btn-primary">Thêm dịch vụ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Quay lại", "DanhSachPhieuThue")
+</div>

@@ -1,0 +1,69 @@
+﻿@model QLKS_H2O.Areas.Admin.Models.DoanhThuModel
+
+@{
+    ViewBag.Title = "Kế toán: Doanh thu";
+    Layout = "~/Areas/Admin/Views/Shared/_KeToanLayout.cshtml";
+    ViewBag.tag = "dtngay";
+}
+
+<h4 class="text-center my-2">DOANH THU NGÀY</h4>
+
+@using (Html.BeginForm("DoanhThuNgay", "KeToan", FormMethod.Get))
+{
+    <div class="form-group w-50 mx-auto d-flex align-items-center">
+        <label for="date" class="col-4">Ngày tính doanh thu</label>
+        <input type="date" class="form-control" id="date" name="date" value="@ViewBag.date" />
+        <button type="submit" class="btn btn-success ml-2">Tính</button>
+    </div>
+}
+
+@if (Model.doanhThuPhongs.Count() > 0)
+{
+    <table class="table table-sm text-center table-bordered table-striped w-50 mx-auto">
+        <thead class="thead-dark">
+            <tr>
+                <th>STT</th>
+                <th>Phòng</th>
+                <th>Tổng tiền phòng</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            @{
+                int index = 0;
+                decimal tongDoanhThuPhong = 0;
+            }
+            @foreach (var phong in Model.doanhThuPhongs)
+            {
+                <tr>
+                    <td>
+                        @{index++;}
+                        @index
+                    </td>
+                    <td>@phong.maPhong</td>
+                    <td>@phong.doanhThu.ToString("#,##0.0")</td>
+                    @{ tongDoanhThuPhong += phong.doanhThu;}
+                </tr>
+            }
+            <tr>
+                <th colspan="2">Tổng doanh thu tiền thuê phòng</th>
+                <td>@tongDoanhThuPhong.ToString("#,##0.0")</td>
+            </tr>
+            <tr>
+                <th colspan="2">Tổng doanh thu tiền thuê dịch vụ</th>
+                <td>@Model.doanhThuDichVu.ToString("#,##0.0")</td>
+            </tr>
+            <tr>
+                <th colspan="2">Tổng doanh thu</th>
+                <td>
+                    @{var tong = Model.doanhThuDichVu + tongDoanhThuPhong;}
+                    @tong.ToString("#,##0.0")
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-right w-50 mx-auto">
+        @Html.ActionLink("Download", "DoanhThuNgayDownload", "KeToan", new { date = ViewBag.date }, new { @class = "btn btn-success btn-sm" })
+    </div>
+}
+
+<a href="@Request.UrlReferrer">Quay lại</a>

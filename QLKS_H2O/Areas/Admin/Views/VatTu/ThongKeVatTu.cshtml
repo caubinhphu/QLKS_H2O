@@ -1,0 +1,57 @@
+﻿@model IEnumerable<QLKS_H2O.Models.VATTU_LOAIPHONG>
+@{
+    ViewBag.Title = "ThongKeVatTu";
+    Layout = "~/Areas/Admin/Views/Shared/_VatTuLayout.cshtml";
+}
+
+<h2>Thống kê vật tư</h2>
+
+<div class="mx-auto mb-3" style="width: 400px">
+    @using (Html.BeginForm())
+    {
+        <div class="d-flex align-items-center">
+            @Html.DropDownList("loaiPhong", null, new { @class = "form-control" })
+
+            <div class="ml-2">
+                <button class="btn btn-success" type="submit">Xem</button>
+            </div>
+
+        </div>
+    }
+</div>
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-striped text-center table-sm w-50 mx-auto">
+        <tr>
+            <th>
+                Tên vật tư
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Thao tác
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VATTU.TEN_VATTU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SOLUONG)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "EditChiTiet", new { lp = item.MA_LOAIPHONG, vt = item.MA_VATTU })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+}
+

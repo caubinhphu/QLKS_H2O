@@ -1,0 +1,59 @@
+﻿@model QLKS_H2O.Models.PHONG
+
+@{
+    ViewBag.Title = "Phòng";
+    Layout = "~/Areas/Admin/Views/Shared/_QuanLyLayout.cshtml";
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal w-75 mx-auto">
+        <h4>THÔNG TIN PHÒNG</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group d-flex align-items-center">
+            @Html.LabelFor(model => model.MA_PHONG, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MA_PHONG, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+                @Html.ValidationMessageFor(model => model.MA_PHONG, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            @Html.LabelFor(model => model.MA_LOAIPHONG, "Loại phòng", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MA_LOAIPHONG", null, htmlAttributes: new { @class = "form-control form-control-sm" })
+                @Html.ValidationMessageFor(model => model.MA_LOAIPHONG, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            @Html.LabelFor(model => model.GIAPHONG, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GIAPHONG, new { htmlAttributes = new { @class = "form-control form-control-sm", @type = "number" } })
+                @Html.ValidationMessageFor(model => model.GIAPHONG, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            @Html.LabelFor(model => model.MA_TRANGTHAI, "Trạng thái", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MA_TRANGTHAI", null, htmlAttributes: new { @class = "form-control form-control-sm" })
+                @Html.ValidationMessageFor(model => model.MA_TRANGTHAI, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Quay lại", "PhongIndex")
+</div>

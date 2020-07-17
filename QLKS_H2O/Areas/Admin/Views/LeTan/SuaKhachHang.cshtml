@@ -1,0 +1,87 @@
+﻿@model QLKS_H2O.Models.KHACH
+
+@{
+    ViewBag.Title = "SuaKhachHang";
+    Layout = "~/Areas/Admin/Views/Shared/_LeTanLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal w-75 mx-auto">
+        <h4>CẬP NHẬT THÔNG TIN KHÁCH HÀNG</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group d-flex align-items-center">
+            <label for="MA_KHACH" class="col-2">Mã khách</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MA_KHACH, new { htmlAttributes = new { @class = "form-control form-control-sm", @readonly="readonly" } })
+                @Html.ValidationMessageFor(model => model.MA_KHACH, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            <label for="HOTEN_KHACH" class="col-2">Họ tên khách</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HOTEN_KHACH, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+                @Html.ValidationMessageFor(model => model.HOTEN_KHACH, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            <label for="CMND" class="col-2">CMND/PASSPORT</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+                @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            <label for="DIENTHOAI" class="col-2">Điện thoại</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DIENTHOAI, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+                @Html.ValidationMessageFor(model => model.DIENTHOAI, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            <label for="QUOCTICH" class="col-2">Quốc tịch</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QUOCTICH, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+                @Html.ValidationMessageFor(model => model.QUOCTICH, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            <label for="GIOITINH" class="col-2">Giới tính</label>
+            <div class="col-md-10">
+                <div class="checkbox">
+                    Nam @Html.RadioButtonFor(model => model.GIOITINH, "True", new { @checked = "checked" }) &nbsp;
+                    Nữ @Html.RadioButtonFor(model => model.GIOITINH, "False")
+                    @Html.ValidationMessageFor(model => model.GIOITINH, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group d-flex align-items-center">
+            <label for="NGAYSINH" class="col-2">Ngày sinh</label>
+            <div class="col-md-10">
+                <input type="date" id="NGAYSINH" name="NGAYSINH" class="form-control form-control-sm" value="@Model.NGAYSINH.ToString("yyyy-MM-dd")" />
+                @*@Html.EditorFor(model => model.NGAYSINH, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.NGAYSINH, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="javascript: history.go(-1)">Quay lại</a>
+</div>

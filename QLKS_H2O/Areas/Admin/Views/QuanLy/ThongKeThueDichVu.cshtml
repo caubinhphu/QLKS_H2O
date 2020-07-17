@@ -1,0 +1,37 @@
+﻿@model List<QLKS_H2O.Models.THONGKE_DICHVU_Result>
+@{
+    ViewBag.Title = "Thống kê thuê dịch vụ";
+    Layout = "~/Areas/Admin/Views/Shared/_QuanLyLayout.cshtml";
+    int i = 0;
+}
+
+<h3 class="text-center">THỐNG KÊ THUÊ DỊCH VỤ</h3>
+<table class="table table-sm text-center table-bordered mx-auto w-50">
+    <thead>
+        <tr>
+            <th class="text-center">STT</th>
+            <th class="text-center">Mã dịch vụ</th>
+            <th class="text-center">Tên dịch vụ</th>
+            <th class="text-center">Số lần thuê</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @{i++;}
+        @i
+    </td>
+    <td>
+        @item.MA_DICHVU
+    </td>
+    <td>
+        @item.TEN_DICHVU
+    </td>
+    <td>
+        @item.soLuong
+    </td>
+</tr>
+    }
+
+</table>

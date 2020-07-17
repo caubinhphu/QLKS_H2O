@@ -1,0 +1,35 @@
+﻿@model QLKS_H2O.Models.DICHVU
+
+@{
+    ViewBag.Title = "DichVuDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_QuanLyLayout.cshtml";
+}
+
+<h2>DichVuDetails</h2>
+
+<div>
+    <h4>DICHVU</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TEN_DICHVU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEN_DICHVU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIA_DICHVU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIA_DICHVU)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "DichVuEdit", new { id = Model.MA_DICHVU }) |
+    @Html.ActionLink("Quay lại", "DichVuIndex")
+</p>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<QLKS_H2O.Models.DICHVU>
+
+@{
+    ViewBag.Title = "Dịch vụ";
+    Layout = "~/Areas/Admin/Views/Shared/_QuanLyLayout.cshtml";
+    var grid = new WebGrid(Model, canPage: true, rowsPerPage: 7);
+}
+
+<h3 class="text-center my-2">Danh Sách Dịch Vụ</h3>
+
+<p>@Html.ActionLink("Thêm mới Dịch Vụ", "DichVuCreate")</p>
+
+<div>
+    @using (Html.BeginForm("DichVuIndex", "QuanLy", FormMethod.Get))
+    {
+        <table align="center" class="table1">
+            <tr>
+                <td>
+                    <div> Mã dịch vụ</div>
+                </td>
+                <td>
+                    <input type="text" name="maDV" value="@ViewBag.maDV" class="form-control" />
+                </td>
+
+            </tr>
+            <tr>
+                <td>Tên dịch vụ</td>
+                <td>
+                    <input type="text" name="tenDV" value="@ViewBag.tenDV" class="form-control" />
+                </td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" class="btn btn-sm btn-primary">Tìm kiếm</button>
+                    <a href="/Admin/QuanLy/DichVuIndex" role="button" class="btn btn-sm btn-primary">Nhập mới</a>
+
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+
+@if(Model.Count() > 0)
+{
+<div id="gridContent">
+    @ViewBag.TB
+    @grid.GetHtml(
+        tableStyle: "table table-bordered table-hover text-center",
+        footerStyle: "grid-footer",
+        fillEmptyRows: true,
+        mode: WebGridPagerModes.Numeric,
+        alternatingRowStyle: "alternatingRowStyle",
+          columns: new[]  // colums in grid
+         {
+            grid.Column("STT",format: item => item.WebGrid.Rows.IndexOf(item) + 1),
+            grid.Column("MA_DICHVU","Mã Dịch Vụ"), //the model fields to display
+            grid.Column("TEN_DICHVU","Tên Dịch Vụ"),
+            grid.Column("GIA_DICHVU","Giá Dịch Vụ"),
+            grid.Column("Thao tác", format: @<text>
+    <a href="@Url.Action("DichVuEdit", new { id = item.MA_DICHVU})" class="btn btn-sm btn-warning">Sửa</a>
+    <a href="@Url.Action("DichVuDelete",new { id = item.MA_DICHVU})" class="btn btn-sm btn-danger">Xóa</a>
+            </text>),
+}
+)
+</div>
+}
+else
+{
+    <b>Không có dịch vụ nào được tìm thấy</b>
+}

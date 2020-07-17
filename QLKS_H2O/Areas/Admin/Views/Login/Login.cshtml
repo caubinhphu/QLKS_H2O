@@ -1,0 +1,48 @@
+﻿@model QLKS_H2O.Areas.Admin.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="m-4 row">
+        <div class="col-sm-5">
+            <div class="p-4" style="background-color: #e8f4ff">
+                <div class="text-center"><b class="text-danger">ĐĂNG NHẬP</b></div>
+
+                @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.username)
+                            @Html.TextBoxFor(model => model.username, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.passwrord)
+                            @Html.PasswordFor(model => model.passwrord, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.passwrord, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="text-right">
+                        <button class="btn btn-primary" type="submit">ĐĂNG NHẬP</button>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="p-4" style="background-color: #e8f4ff">
+                <div class="text-center"><b class="text-danger">THÔNG BÁO MỚI NHẤT</b></div>
+            </div>
+        </div>
+    </div>
+
+
+
+

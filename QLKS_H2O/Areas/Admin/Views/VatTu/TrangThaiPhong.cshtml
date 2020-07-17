@@ -1,0 +1,60 @@
+﻿@model IEnumerable<QLKS_H2O.Models.PHONG>
+
+@{
+    ViewBag.Title = "TrangThaiPhong";
+    Layout = "~/Areas/Admin/Views/Shared/_VatTuLayout.cshtml";
+    var grid = new WebGrid(Model, canPage: true, rowsPerPage: 7);
+}
+
+
+<div>
+    @using (Html.BeginForm("TrangThaiPhong", "VatTu", FormMethod.Get))
+    {
+        <table align="center" class="table1">
+            <tr>
+                <td>
+                    <div> Mã phòng</div>
+                </td>
+                <td>
+                    <input type="text" name="maP" value="@ViewBag.maP" class="form-control" />
+                </td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" class="btn btn-sm btn-primary">Tìm kiếm</button>
+                    <a href="/Admin/VatTu/TrangThaiPhong" role="button" class="btn btn-sm btn-primary">Nhập mới</a>
+
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+
+@if (Model.Count() > 0)
+{
+    <div id="gridContent">
+        @ViewBag.TB
+        @grid.GetHtml(
+            tableStyle: "table table-bordered table-hover text-center",
+            footerStyle: "grid-footer",
+            fillEmptyRows: true,
+            mode: WebGridPagerModes.Numeric,
+            alternatingRowStyle: "alternatingRowStyle",
+              columns: new[]  // colums in grid
+             {
+                grid.Column("STT",format: item => item.WebGrid.Rows.IndexOf(item) + 1),
+                grid.Column("MA_PHONG","Mã phòng"), //the model fields to display
+                grid.Column("TRANGTHAI_PHONG.TEN_TRANGTHAI","Trạng thái phòng"),
+                grid.Column("Thao tác", format: @<text>
+    <a href="@Url.Action("CapNhatTrangThaiPhong", new { maP = item.MA_PHONG, maTT = item.TRANGTHAI_PHONG.MA_TRANGTHAI})" class="btn btn-sm btn-warning">Cập nhật</a>
+                </text>),
+}
+)
+    </div>
+}
+else
+{
+    <b>Không có phòng nào được tìm thấy</b>
+}

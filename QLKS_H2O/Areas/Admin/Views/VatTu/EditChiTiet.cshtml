@@ -1,0 +1,48 @@
+﻿@model QLKS_H2O.Models.VATTU_LOAIPHONG
+@{
+    ViewBag.Title = "EditChiTiet";
+    Layout = "~/Areas/Admin/Views/Shared/_VatTuLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal w-50 ">
+        <h4>THÔNG TIN VẬT TƯ TRONG LOẠI PHÒNG</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MA_VATTU)
+
+        @Html.HiddenFor(model => model.MA_LOAIPHONG)
+
+        <div class="form-group d-flex align-items-center">
+            @Html.LabelFor(model => model.LOAIPHONG.TEN_LOAIPHONG, "Tên loại phòng", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LOAIPHONG.TEN_LOAIPHONG, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.LOAIPHONG.TEN_LOAIPHONG, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group d-flex align-items-center">
+            @Html.LabelFor(model => model.VATTU.TEN_VATTU, "Tên vật tư", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VATTU.TEN_VATTU, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.VATTU.TEN_VATTU, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group d-flex align-items-center">
+            @Html.LabelFor(model => model.SOLUONG, "Số lượng", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SOLUONG, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
+                @Html.ValidationMessageFor(model => model.SOLUONG, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10 mt-4">
+                <input type="submit" value="Cập nhật" class="btn btn-success" /> |
+                @Html.ActionLink("Quay lại", "ThongKeVatTu")
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,54 @@
+﻿@model QLKS_H2O.Models.LOAIPHONG
+
+@{
+    ViewBag.Title = "Loại phòng";
+    Layout = "~/Areas/Admin/Views/Shared/_QuanLyLayout.cshtml";
+}
+
+<h3>Bnaj có chắc chắn xóa loại phòng này không?</h3>
+<div>
+    <h4>Thông tin loại phòng</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MA_LOAIPHONG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MA_LOAIPHONG)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TEN_LOAIPHONG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEN_LOAIPHONG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KICHTHUOC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KICHTHUOC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MAMAU)
+        </dt>
+
+        <dd>
+            <input type="color" value="@Model.MAMAU" disabled />
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            @Html.ActionLink("Quay lại", "LoaiPhongIndex")
+        </div>
+    }
+</div>

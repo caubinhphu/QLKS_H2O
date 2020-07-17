@@ -1,0 +1,159 @@
+﻿@model List<QLKS_H2O.Areas.Admin.Models.PhongGroupModel>
+@{
+    ViewBag.Title = "Phòng";
+    Layout = "~/Areas/Admin/Views/Shared/_LeTanLayout.cshtml";
+}
+
+@section letan_style {
+    <link href="~/Content/danhsachphong.css" rel="stylesheet" />
+}
+
+<div>
+    <form action="/Admin/LeTan/Index" method="get" class="w-50 mx-auto">
+        <table class="table table-borderless table-sm my-0">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="maphong">Phòng</label>
+                        <input type="number" name="maphong" id="maphong" class="form-control form-control-sm" value="@ViewBag.maphong" />
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label for="tang">Tầng</label>
+                        <input type="number" name="tang" id="tang" class="form-control form-control-sm" value="@ViewBag.tang" min="1" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="trangthai">Trạng thái phòng</label>
+                        <select class="form-control form-control-sm" name="trangthai" id="trangthai">
+                            <option value="">Tất cả</option>
+                            @foreach (var trangThai in ViewBag.trangThais)
+                            {
+                                <option value="@trangThai.MA_TRANGTHAI" @(trangThai.MA_TRANGTHAI == ViewBag.trangthai ? "selected" : "")>@trangThai.TEN_TRANGTHAI</option>
+                            }
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label for="loaiphong">Loại phòng</label>
+                        <select class="form-control form-control-sm" name="loaiphong" id="loaiphong">
+                            <option value="">Tất cả</option>
+                            @foreach (var loaiPhong in ViewBag.loaiPhongs)
+                            {
+                                <option value="@loaiPhong.MA_LOAIPHONG" @(loaiPhong.MA_LOAIPHONG == ViewBag.loaiphong ? "selected" : "")>@loaiPhong.TEN_LOAIPHONG</option>
+                            }
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label>Giá phòng</label>
+                        <input type="number" name="giatu" class="form-control form-control-sm" value="@ViewBag.giatu" placeholder="Từ" min="0" step="5000" />
+                    </div>
+                </td>
+                <td>
+                    <label>&nbsp;</label>
+                    <input type="number" name="giaden" class="form-control form-control-sm" value="@ViewBag.giaden" placeholder="Đến" min="0" step="5000" />
+                </td>
+            </tr>
+        </table>
+        <div class="text-right">
+            <a role="button" class="btn btn-secondary btn-sm mr-2" href="/Admin/LeTan/Index">Nhập lại</a>
+            <button type="submit" class="btn btn-success btn-sm">Tra cứu</button>
+        </div>
+    </form>
+</div>
+
+<hr />
+
+<div>
+    <h4 class="text-center">DANH SÁCH PHÒNG</h4>
+    <div class="d-flex mx-md-4" id="dsphong">
+        <div>
+            @if (Model.Count() > 0)
+            {
+                foreach (var group in Model)
+                {
+                    <div class="d-flex flex-wrap my-4 align-items-center">
+                        <h5 class="text-secondary">Tầng @(group.tang)</h5>
+                        @foreach (var phong in group.phongs)
+                        {
+                            <a href="/Admin/Letan/Phong/@phong.maPhong" style="color: black">
+                                <div class="phong" title="@(String.Format("{0,1:N1}", phong.giaPhong))" data-toggle="tooltip" data-placement="top">
+                                    <div class="d-flex justify-content-center align-items-center phong-loaiphong" style="background-color: @phong.mauLoaiPhong">
+                                        <p class="phong-text">@phong.maPhong</p>
+                                    </div>
+                                    <div class="phong-trangthai" style="background-color: @phong.mauTrangThai"></div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                }
+            }
+            else
+            {
+                <div>
+                    <b>Không có phòng nào thỏa điều kiện</b>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <hr />
+    <h5 class="text-center">Ghi chú</h5>
+    <div class="d-flex m-4 justify-content-around flex-wrap">
+        <div>
+            <div class="text-center">
+                <b style="font-size: 20px">Loại phòng</b>
+            </div>
+            @foreach (var loaiPhong in ViewBag.loaiPhongs)
+            {
+                <div class="my-2">
+                    <div class="d-flex align-items-center my-2">
+                        <div class="mr-2">
+                            <div class="chuthich-loaiphong" style="background-color: @loaiPhong.MAMAU">.</div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <p class="my-auto">@loaiPhong.TEN_LOAIPHONG</p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div>
+            <div class="text-center">
+                <b style="font-size: 20px">Trạng thái phòng</b>
+            </div>
+            @foreach (var trangThai in ViewBag.trangThais)
+            {
+                <div class="my-2">
+                    <div class="d-flex align-items-center my-2">
+                        <div class="mr-2">
+                            <div class="chuthich-trangthai" style="background-color: @trangThai.MAMAU">.</div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <p class="my-auto">@trangThai.TEN_TRANGTHAI</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section letan_script {
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}

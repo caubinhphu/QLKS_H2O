@@ -1,31 +1,52 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model List<QLKS_H2O.Models.LoaiPhongGioiThieu>
+@{
+    ViewBag.Title = "H2O Hotle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+@*@section style {
+    <link href="~/Content/home.css" rel="stylesheet" />
+}*@
+
+<div style="position: fixed; top: 10px; right: 10px">
+    <a href="/Admin/Login/Login" role="button" class="btn btn-sm btn-primary">Đăng nhập</a>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<div class="container">
+    <div class="d-flex">
+        <img src="~/Images/anh3.jpg" alt="#">
+
+        <div class="ml-4">
+            <p>
+                <h2><i>H2O</i></h2>
+                <i>
+                    Khách Sạn H20 Đạt Chuẩn 5 Sao tọa lạc trên cung đường sát biển với view cực đẹp.<br>
+                    Nằm gần với các khu hành chính của tỉnh và gần các trung tâm mua sắm và bãi biển ở nha trang
+                </i>
+            </p>
+            <div class="right">
+                <p><i>Khách sạn rất nhiều phòng nghỉ, được thiết kế hiện đại, đạt tiêu chuẩn quốc tế 5 sao, với đa dạng nhiều loại phòng như: phòng đơn, phòng gia đình, phòng có view đẹp, nội thất được bày trí khoa học và tinh tế, lắp đặt những trang thiết bị hiện đại đạt tiêu chuẩn quốc tế, sẵn sàng phục vụ quý khách.Khách sạn phục vụ các món ăn Âu – Á và đặc sản địa phương sẽ làm quý khách hài lòng.</i></p>
+            </div>
+            <b>Liên hệ với chúng tôi qua số điện thoại: 0123456779</b>
+        </div>
+        
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+    <hr />
+
+    <div class="content">
+        <h5 id="title">Loại phòng trong khách sạn</h5>
+        <div class="d-flex justify-content-around flex-wrap">
+            @foreach (var lp in Model)
+            {
+                <div class="card mt-2" style="width: 18rem;">
+                    <img src="/Images/@lp.anh" class="card-img-top" alt="anh">
+                    <div class="card-body">
+                        <h5 class="card-title">@lp.tenLP</h5>
+                        <span>@(lp.giaMin.ToString("###,###"))VNĐ @(lp.giaMax > lp.giaMin ? " - " + lp.giaMax.ToString("###,###") + "VNĐ" : "")</span>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </div>

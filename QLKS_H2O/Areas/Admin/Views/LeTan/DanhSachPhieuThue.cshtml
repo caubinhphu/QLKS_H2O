@@ -1,0 +1,86 @@
+﻿@model IEnumerable<QLKS_H2O.Models.PHIEU_THUEPHONG>
+@{
+    ViewBag.Title = "Phiếu thuê phòng";
+    Layout = "~/Areas/Admin/Views/Shared/_LeTanLayout.cshtml";
+    var grid = new WebGrid(Model, canPage: true, rowsPerPage: 5);
+}
+
+@section letan_style {
+    <link href="~/Content/footer-grid.css" rel="stylesheet" />
+}
+
+@Html.ActionLink("Thêm phiếu", "ThemPhieuThuePhong", null, new { @class = "btb btn-success btn-sm" })
+
+<h4 class="text-center">DANH SÁCH PHIẾU THUÊ PHÒNG</h4>
+
+<div>
+    @using (Html.BeginForm("DanhSachPhieuThue", "LeTan", FormMethod.Get))
+    {
+        <table align="center" class="table1">
+            <tr>
+                <td>
+                    <div>Số phiếu</div>
+                </td>
+                <td>
+                    <input type="text" name="soPhieu" value="@ViewBag.soPhieu" class="form-control" />
+                </td>
+
+            </tr>
+            <tr>
+                <td>Tên khách hàng</td>
+                <td>
+                    <input type="text" name="tenK" value="@ViewBag.tenK" class="form-control" />
+                </td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" class="btn btn-sm btn-primary">Tìm kiếm</button>
+                    <a href="/Admin/LeTan/DanhSachPhieuThue" role="button" class="btn btn-sm btn-primary">Nhập mới</a>
+
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+
+@if (Model.Count() > 0)
+{
+    <div id="gridContent">
+        @ViewBag.TB
+        @grid.GetHtml(
+            tableStyle: "table table-bordered table-hover table-striped text-center",
+            footerStyle: "grid-footer",
+            fillEmptyRows: true,
+            mode: WebGridPagerModes.All,
+            columns: new[]  // colums in grid
+            {
+                grid.Column("STT",format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex),
+                grid.Column("SO_PHIEU","Số phiếu"), //the model fields to display
+                grid.Column("NGAYLAP_PHIEU","Ngày lập phiếu", item => item.NGAYLAP_PHIEU.ToString("dd/MM/yyyy")),
+                grid.Column("NGAYDEN","Ngày đến", item => item.NGAYDEN.ToString("dd/MM/yyyy")),
+                grid.Column("NGAYDI","Ngày đi", item => item.NGAYDI.ToString("dd/MM/yyyy")),
+                grid.Column("DATRAPHONG","Đã trả phòng", item => item.DATRAPHONG==true?"Đã":"Chưa"),
+                grid.Column("KHACH.HOTEN_KHACH","Khách thuê"),
+                grid.Column("NHANVIEN.HOTEN_NHANVIEN","Nhân viên lập phiếu"),
+                grid.Column("Thao tác", format: @<text>
+    @if(item.DATRAPHONG)
+                {
+    <a href="@Url.Action("XoaPhieuThuePhong", new { id = item.SO_PHIEU})" class="btn btn-sm btn-danger">Xóa</a>
+                } else
+                {
+    <a href="@Url.Action("TraPhong", new { id = item.SO_PHIEU})" class="btn btn-sm btn-success">Trả phòng</a>
+    <a href="@Url.Action("SuaPhieuThuePhong", new { id = item.SO_PHIEU})" class="btn btn-sm btn-secondary">Cập nhật</a>
+                }
+    <a href="@Url.Action("PhieuThuePhong", new { id = item.SO_PHIEU})" class="btn btn-sm btn-info">Xem</a>
+                </text>),
+     }
+ )
+    </div>
+
+}
+else
+{
+    <b>Không tìm thấy phiếu thuê phòng nào</b>
+}

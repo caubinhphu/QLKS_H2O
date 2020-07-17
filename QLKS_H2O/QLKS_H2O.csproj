@@ -53,12 +53,20 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=5.1.2.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.5.1.2\lib\net45\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="Select.HtmlToPdf, Version=20.1.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>..\packages\Select.HtmlToPdf.20.1.0\lib\net40\Select.HtmlToPdf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -130,61 +138,79 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\KeToanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LeTanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuanLyController.cs" />
+    <Compile Include="Areas\Admin\Controllers\VatTuController.cs" />
+    <Compile Include="Areas\Admin\Models\DoanhThuModel.cs" />
+    <Compile Include="Areas\Admin\Models\DoanhThuPhongModel.cs" />
+    <Compile Include="Areas\Admin\Models\HoaDonModel.cs" />
+    <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Areas\Admin\Models\LoginSessionModel.cs" />
+    <Compile Include="Areas\Admin\Models\PhieuLapModel.cs" />
+    <Compile Include="Areas\Admin\Models\PhongGroupModel.cs" />
+    <Compile Include="Areas\Admin\Models\PhongModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KeToanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CHITIET_THUEPHONG.cs">
-      <DependentUpon>H2OModel.tt</DependentUpon>
+    <Compile Include="Models\CHITIET_THUEDICHVU.cs">
+      <DependentUpon>QLKS_H2OModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CT_THUE_DICHVU.cs">
-      <DependentUpon>H2OModel.tt</DependentUpon>
+    <Compile Include="Models\CHITIET_THUEPHONG.cs">
+      <DependentUpon>QLKS_H2OModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DICHVU.cs">
-      <DependentUpon>H2OModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\H2OModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>H2OModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\H2OModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>H2OModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\H2OModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>H2OModel.edmx</DependentUpon>
+      <DependentUpon>QLKS_H2OModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KHACH.cs">
-      <DependentUpon>H2OModel.tt</DependentUpon>
+      <DependentUpon>QLKS_H2OModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LOAIPHONG.cs">
-      <DependentUpon>H2OModel.tt</DependentUpon>
+      <DependentUpon>QLKS_H2OModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoaiPhongGioiThieu.cs" />
     <Compile Include="Models\NHANVIEN.cs">
-      <DependentUpon>H2OModel.tt</DependentUpon>
+      <DependentUpon>QLKS_H2OModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PHIEU_THUEPHONG.cs">
-      <DependentUpon>H2OModel.tt</DependentUpon>
+      <DependentUpon>QLKS_H2OModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PHONG.cs">
-      <DependentUpon>H2OModel.tt</DependentUpon>
+      <DependentUpon>QLKS_H2OModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TONTHAT.cs">
-      <DependentUpon>H2OModel.tt</DependentUpon>
+    <Compile Include="Models\QLKS_H2OModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLKS_H2OModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QLKS_H2OModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLKS_H2OModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QLKS_H2OModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLKS_H2OModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THONGKE_DICHVU_Result.cs">
+      <DependentUpon>QLKS_H2OModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THONGKE_PHONG_Result.cs">
+      <DependentUpon>QLKS_H2OModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TRANGTHAI_PHONG.cs">
-      <DependentUpon>H2OModel.tt</DependentUpon>
+      <DependentUpon>QLKS_H2OModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VATTU.cs">
-      <DependentUpon>H2OModel.tt</DependentUpon>
+      <DependentUpon>QLKS_H2OModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VATTU_LOAIPHONG.cs">
-      <DependentUpon>H2OModel.tt</DependentUpon>
+      <DependentUpon>QLKS_H2OModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -195,25 +221,25 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\danhsachphong.css" />
+    <Content Include="Content\fontawesome-free\css\all.min.css" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\footer-grid.css" />
+    <Content Include="Content\home.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\H2OModel.Context.tt">
+    <Content Include="Models\QLKS_H2OModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>H2OModel.Context.cs</LastGenOutput>
-      <DependentUpon>H2OModel.edmx</DependentUpon>
+      <DependentUpon>QLKS_H2OModel.edmx</DependentUpon>
+      <LastGenOutput>QLKS_H2OModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\H2OModel.tt">
+    <Content Include="Models\QLKS_H2OModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>H2OModel.edmx</DependentUpon>
-      <LastGenOutput>H2OModel.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Models\H2OModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>H2OModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\H2OModel.edmx.diagram">
-      <DependentUpon>H2OModel.edmx</DependentUpon>
+      <DependentUpon>QLKS_H2OModel.edmx</DependentUpon>
+      <LastGenOutput>QLKS_H2OModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -238,6 +264,74 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\KeToan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_KeToanLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\KeToan\DoanhThuNgay.cshtml" />
+    <Content Include="Areas\Admin\Views\KeToan\HoaDon.cshtml" />
+    <Content Include="Areas\Admin\Views\KeToan\DoanhThuThang.cshtml" />
+    <Content Include="Areas\Admin\Views\KeToan\DoanhThuNam.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LeTanLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\LeTan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LeTan\DanhSachPhieuThue.cshtml" />
+    <Content Include="Areas\Admin\Views\LeTan\ThemPhieuThuePhong.cshtml" />
+    <Content Include="Areas\Admin\Views\LeTan\Phong.cshtml" />
+    <Content Include="Areas\Admin\Views\LeTan\PhieuThuePhong.cshtml" />
+    <Content Include="Areas\Admin\Views\LeTan\XoaPhieuThuePhong.cshtml" />
+    <Content Include="Areas\Admin\Views\LeTan\SuaPhieuThuePhong.cshtml" />
+    <Content Include="Areas\Admin\Views\LeTan\SuaKhachHang.cshtml" />
+    <Content Include="Areas\Admin\Views\LeTan\ThemDichVu.cshtml" />
+    <Content Include="Areas\Admin\Views\LeTan\TraPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\LeTan\CreateHoaDon.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_VatTuLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\VatTu\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\VatTu\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\VatTu\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\VatTu\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\VatTu\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\VatTu\ThongKeVatTu.cshtml" />
+    <Content Include="Areas\Admin\Views\VatTu\EditChiTiet.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_QuanLyLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\LoaiPhongIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\LoaiPhongDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\LoaiPhongCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\LoaiPhongEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\LoaiPhongDelete.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\PhongIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\PhongDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\PhongCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\PhongEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\PhongDelete.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\DichVuIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\DichVuDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\DichVuCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\DichVuEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\DichVuDelete.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\ThongKeThuePhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLy\ThongKeThueDichVu.cshtml" />
+    <EntityDeploy Include="Models\QLKS_H2OModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QLKS_H2OModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\QLKS_H2OModel.edmx.diagram">
+      <DependentUpon>QLKS_H2OModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\VatTu\CapNhatTrangThaiPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\VatTu\TrangThaiPhong.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -248,6 +342,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\LeTan\thuephong.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -331,7 +426,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -342,10 +436,12 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\KeToan\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Content\Ketoan\" />
     <Folder Include="Content\Letan\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e6c47ab1b5634bc293d595520d75567b" Name="Diagram1">
+        <EntityTypeShape EntityType="QLKS_H2OModel.CHITIET_THUEDICHVU" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_H2OModel.CHITIET_THUEPHONG" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_H2OModel.DICHVU" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_H2OModel.KHACH" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_H2OModel.LOAIPHONG" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_H2OModel.NHANVIEN" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_H2OModel.PHIEU_THUEPHONG" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_H2OModel.PHONG" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_H2OModel.TRANGTHAI_PHONG" Width="1.5" PointX="0.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_H2OModel.VATTU" Width="1.5" PointX="3.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_H2OModel.VATTU_LOAIPHONG" Width="1.5" PointX="6" PointY="13" IsExpanded="true" />
+        <AssociationConnector Association="QLKS_H2OModel.FK__CHITIET_T__MA_DI__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKS_H2OModel.FK__CHITIET_T__SO_PH__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKS_H2OModel.FK__CHITIET_T__MAPHO__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKS_H2OModel.FK__CHITIET_T__SO_PH__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKS_H2OModel.FK__PHIEU_THU__MAKHA__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKS_H2OModel.FK__PHONG__MA_LOAIPH__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKS_H2OModel.FK__VATTU_LOA__MA_LO__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKS_H2OModel.FK__PHIEU_THU__MA_NH__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKS_H2OModel.FK__PHONG__MA_TRANGT__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKS_H2OModel.FK__VATTU_LOA__MA_VA__145C0A3F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

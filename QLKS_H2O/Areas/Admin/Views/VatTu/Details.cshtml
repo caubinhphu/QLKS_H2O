@@ -1,0 +1,28 @@
+﻿@model QLKS_H2O.Models.VATTU
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_VatTuLayout.cshtml";
+}
+
+<h2>Thông tin vật tư</h2>
+
+<div>
+    <hr />
+    <table class="table table-bordered table-striped text-center">
+        <tr>
+            <th>Mã vật tư</th>
+            <th>Tên vật tư</th>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayFor(model => model.MA_VATTU)</td>
+            <td>@Html.DisplayFor(model => model.TEN_VATTU)</td>
+        </tr>
+
+    </table>
+</div>
+<p>
+    @*@Html.ActionLink("Sửa", "Edit", new { id = Model.MA_VATTU}) |*@
+    @Html.ActionLink("Quay lại", "Index")
+</p>
