@@ -122,44 +122,57 @@ namespace QLKS_H2O.Areas.Admin.Controllers
         // POST: /Admin/LaTan/ThemPhieuThuePhong
         // thuê phòng
         [HttpPost]
-        public ActionResult ThemPhieuThuePhong(PhieuLapModel phieuLap)
+        public ActionResult ThemPhieuThuePhong(FormCollection form)
         {
-            if (ModelState.IsValid)
-            {
-                string maKhach = Math.Round(((new Random()).NextDouble() * 1e9)).ToString().PadLeft(9, '0');
+            string tenKhach = form["tenkhach"];
+            string cmnd = form["cmnd"];
+            string ngaySinh = form["ngaysinh"];
+            string gioiTinh = form["gioitinh"];
+            string dienThoai = form["dienthoai"];
+            string quocTich = form["quoctich"];
+            string ngayDi = form["ngaydi"];
+            string phongs = form["phong"];
+            string soNguois = form["songuoi"];
+            string dichVus = form["dichvu"];
+            string soLuongs = form["soluong"];
+
+            string maKhach = Math.Round(((new Random()).NextDouble() * 1e9)).ToString().PadLeft(9, '0');
                 string soPhieu = Math.Round(((new Random()).NextDouble() * 1e9)).ToString().PadLeft(9, '0');
 
-                List<String> phongList = phieuLap.phong.Split(new[] { ',' }).ToList();
-                List<String> soNguoiList = phieuLap.songuoi.Split(new[] { ',' }).ToList();
-                List<String> dichVuList = phieuLap.dichvu != null ? phieuLap.dichvu.Split(new[] { ',' }).ToList() : new List<string>();
-                List<String> soLuongList = phieuLap.soluong != null ? phieuLap.soluong.Split(new[] { ',' }).ToList() : new List<string>();
+                List<String> phongList = phongs.Split(new[] { ',' }).ToList();
+                List<String> soNguoiList = soNguois.Split(new[] { ',' }).ToList();
+                List<String> dichVuList = dichVus != null ? dichVus.Split(new[] { ',' }).ToList() : new List<string>();
+                List<String> soLuongList = soLuongs != null ? soLuongs.Split(new[] { ',' }).ToList() : new List<string>();
 
                 PHIEU_THUEPHONG phieu = new PHIEU_THUEPHONG()
                 {
                     SO_PHIEU = soPhieu,
+                    MAKHACH = maKhach,
                     KHACH = new KHACH()
                     {
                         MA_KHACH = maKhach,
-                        CMND = phieuLap.cmnd,
-                        DIENTHOAI = phieuLap.dienthoai,
-                        HOTEN_KHACH = phieuLap.tenkhach,
-                        QUOCTICH = phieuLap.quoctich,
-                        GIOITINH = phieuLap.gioitinh == "1" ? true : false,
-                        NGAYSINH = DateTime.Parse(phieuLap.ngaysinh)
+                        CMND = cmnd,
+                        DIENTHOAI = dienThoai,
+                        HOTEN_KHACH = tenKhach,
+                        QUOCTICH = quocTich,
+                        GIOITINH = gioiTinh == "1" ? true : false,
+                        NGAYSINH = DateTime.Parse(ngaySinh)
                     },
                     DATRAPHONG = false,
                     NGAYDEN = DateTime.Now,
                     NGAYLAP_PHIEU = DateTime.Now,
-                    NGAYDI = DateTime.Parse(phieuLap.ngaydi),
-                    MA_NHANVIEN = "NV001",
-                    CHITIET_THUEPHONG = phongList.Select((phong, index) => new CHITIET_THUEPHONG()
+                    NGAYDI = DateTime.Parse(ngayDi),
+                    MA_NHANVIEN = ((LoginSessionModel)Session["session"]).username,
+                    CHITIET_THUEPHONG = phongList.Select((p, index) => new CHITIET_THUEPHONG()
                     {
-                        MAPHONG = phong,
+                        SO_PHIEU = soPhieu,
+                        MAPHONG = p,
                         SONGUOI = Byte.Parse(soNguoiList[index]),
-                        GIAPHONG = db.PHONGs.Find(phong).GIAPHONG,
+                        GIAPHONG = db.PHONGs.Find(p).GIAPHONG,
                     }).ToList(),
                     CHITIET_THUEDICHVU = dichVuList.Select((dv, index) => new CHITIET_THUEDICHVU()
                     {
+                        SO_PHIEU = soPhieu,
                         MA_DICHVU = dv,
                         SOLUONG = Byte.Parse(soLuongList[index]),
                         GIA_DICHVU = db.DICHVUs.Find(dv).GIA_DICHVU,
@@ -168,19 +181,19 @@ namespace QLKS_H2O.Areas.Admin.Controllers
 
                 db.PHIEU_THUEPHONG.Add(phieu);
 
-                phongList.ForEach(phong => db.PHONGs.Find(phong).MA_TRANGTHAI = "OC");
+                phongList.ForEach(p => db.PHONGs.Find(p).MA_TRANGTHAI = "OC");
 
                 db.SaveChanges();
 
                 return RedirectToAction("DanhSachPhieuThue");
-            }
+            
 
-            ViewBag.phong = db.PHONGs.Where(phong => phong.MA_TRANGTHAI == "VC").ToList();
-            ViewBag.dichVus = new SelectList(db.DICHVUs, "MA_DICHVU", "TEN_DICHVU");
+            //ViewBag.phong = db.PHONGs.Where(p => p.MA_TRANGTHAI == "VC").ToList();
+            //ViewBag.dichVus = new SelectList(db.DICHVUs, "MA_DICHVU", "TEN_DICHVU");
 
-            ViewBag.tag = "thuephong";
-            ViewBag.username = ((LoginSessionModel)Session["session"]).name;
-            return View();
+            //ViewBag.tag = "thuephong";
+            //ViewBag.username = ((LoginSessionModel)Session["session"]).name;
+            //return View();
         }
 
         // GET: /Admin/LeTan/PhieuThuePhong/:id

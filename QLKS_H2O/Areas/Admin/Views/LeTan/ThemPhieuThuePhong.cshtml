@@ -9,7 +9,6 @@
     <h3 class="text-center">PHIẾU THUÊ PHÒNG</h3>
     @using (Html.BeginForm())
     {
-        @Html.ValidationSummary(true, "", new { @class = "text-danger w-50 mx-auto" })
         <div class="row">
             <div class="col-5 mx-auto">
                 <table class="table table-sm table-borderless">
@@ -17,21 +16,21 @@
                         <th>Họ tên khách</th>
                         <td>
                             <input type="text" class="form-control form-control-sm" id="hoten" required name="tenkhach">
-                            @Html.ValidationMessageFor(model => model.tenkhach, "", new { @class = "text-danger" })
+                            @*@Html.ValidationMessageFor(model => model.tenkhach, "", new { @class = "text-danger" })*@
                         </td>
                     </tr>
                     <tr>
                         <th>CMND/PassPort</th>
                         <td>
                             <input type="text" class="form-control form-control-sm" id="cmnd" required name="cmnd" maxlength="10">
-                            @Html.ValidationMessageFor(model => model.cmnd, "", new { @class = "text-danger" })
+                            @*@Html.ValidationMessageFor(model => model.cmnd, "", new { @class = "text-danger" })*@
                         </td>
                     </tr>
                     <tr>
                         <th>Ngày sinh</th>
                         <td>
                             <input type="date" class="form-control form-control-sm" id="ngaysinh" required name="ngaysinh" max="@DateTime.Now.AddYears(-18).ToString("yyyy-MM-dd")">
-                            @Html.ValidationMessageFor(model => model.ngaysinh, "", new { @class = "text-danger" })
+                            @*@Html.ValidationMessageFor(model => model.ngaysinh, "", new { @class = "text-danger" })*@
                         </td>
                     </tr>
                     <tr>
@@ -47,21 +46,21 @@
                         <th>Điện thoại</th>
                         <td>
                             <input type="tel" class="form-control form-control-sm" id="dienthoai" required name="dienthoai" pattern="0[0-9]{8}">
-                            @Html.ValidationMessageFor(model => model.dienthoai, "", new { @class = "text-danger" })
+                            @*@Html.ValidationMessageFor(model => model.dienthoai, "", new { @class = "text-danger" })*@
                         </td>
                     </tr>
                     <tr>
                         <th>Quốc tịch</th>
                         <td>
                             <input type="text" class="form-control form-control-sm" id="quoctich" required name="quoctich">
-                            @Html.ValidationMessageFor(model => model.quoctich, "", new { @class = "text-danger" })
+                            @*@Html.ValidationMessageFor(model => model.quoctich, "", new { @class = "text-danger" })*@
                         </td>
                     </tr>
                     <tr>
                         <th>Ngày đi</th>
                         <td>
                             <input type="date" class="form-control form-control-sm" id="ngaydi" required name="ngaydi" min="@DateTime.Now.ToString("yyyy-MM-dd")">
-                            @Html.ValidationMessageFor(model => model.ngaydi, "", new { @class = "text-danger" })
+                            @*@Html.ValidationMessageFor(model => model.ngaydi, "", new { @class = "text-danger" })*@
                         </td>
                     </tr>
                 </table>
